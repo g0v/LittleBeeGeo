@@ -13,6 +13,7 @@ from calendar import timegm
 from datetime import datetime
 from datetime import timedelta
 import grequests
+import uuid as _uuid
 
 from app import cfg
 
@@ -254,3 +255,7 @@ def get_timestamp():
 
 def get_milli_timestamp():
     return int(time.time() * 1000)
+
+
+def uuid():
+    return str(_uuid.uuid4())
