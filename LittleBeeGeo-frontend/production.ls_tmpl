@@ -1,4 +1,4 @@
 CONFIG = 
-  BACKEND_HOST: \106.187.101.193
+  BACKEND_HOST: \localhost:6437
 
-window.roadpinFrontendApp = {CONFIG}
+window.LittleBeeGeo = {CONFIG}
