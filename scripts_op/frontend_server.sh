@@ -8,7 +8,7 @@ fi
 
 port=${BASH_ARGV[0]}
 
-cd roadpin-frontend
+cd LittleBeeGeo-frontend
 
 if [ ! -e "production.ls" ]
 then
