@@ -4,33 +4,48 @@
 
 LEGENDS = <[ ]>
 
-# LEGEND_STRING = 
+# LEGEND_STRING =
 
 # LEGEND_COLOR =
-  
+
+COLOR_REPORT = \#0F8
+ICON_REPORT = \report.png
+COLOR_REPORT_PATH = \#0FF
+COLOR_CURRENT_POSITION = \#000
+ICON_CURRENT_POSITION = \img/bee.png
 
 angular.module 'LittleBeeGeoFrontend'
-  .controller 'MapCtrl',  <[ $scope geoAccelGyro jsonData ]> ++ ($scope, geoAccelGyro, jsonData) ->
+  .controller 'MapCtrl',  <[ $scope geoAccelGyro jsonData reportList ]> ++ ($scope, geoAccelGyro, jsonData, reportList) ->
     geo = geoAccelGyro.getGeo!
+
+    states = {isReport: "no"}
+    #states <<< {['is_show_' + legend_type, true] for legend_type in LEGENDS}
+    #the_legend_color = {[key, val] for key, val of LEGEND_COLOR}
+    $scope <<< {states}
+    #$scope <<< {states, LEGENDS, LEGEND_STRING, LEGEND_COLOR: the_legend_color, LEGEND_MAP}
 
     $scope.mapOptions = 
       center: new google.maps.LatLng geo.lat, geo.lon
-      zoom: 14
+      zoom: 16
       mapTypeId: google.maps.MapTypeId.ROADMAP
 
     is_first_map_center = true
+
+    current_position_marker = do
+      marker: void
+
     $scope.$on 'geoAccelGyro:event', (e, data) ->
 
       if data.event != 'devicegeo'
           return
 
-      if not is_first_map_center
-          return
+      if is_first_map_center
+        console.log 'to set is_first_map_center as false'
+        is_first_map_center := false
 
-      console.log 'to set is_first_map_center as false'
-      is_first_map_center := false
+        $scope.myMap.setCenter (new google.maps.LatLng data.lat, data.lon)
 
-      $scope.myMap.setCenter (new google.maps.LatLng data.lat, data.lon)
+      _update_current_position_marker data, current_position_marker
 
     $scope.$watch (-> jsonData.getDataTimestamp!), ->
       the_data = jsonData.getData!
@@ -46,14 +61,90 @@ angular.module 'LittleBeeGeoFrontend'
 
     $scope.onMapIdle = ->
 
+    $scope.reportMarkers = []
     $scope.onMapClick = (event, params) ->
       console.log 'onMapClick: event:', event, 'params:', params
+
+      if states.isReport is not "no"
+        reportList.setMarker params[0]
+        report_list = reportList.getList!
+
+        _remove_markers_from_googlemap $scope.reportMarkers
+
+        markers = _add_markers_to_googlemap report_list, COLOR_REPORT
+        path_markers = _add_marker_paths_to_googlemap_from_markers report_list, COLOR_REPORT_PATH
+        $scope.reportMarkers = markers ++ path_markers
 
     $scope.onMapZoomChanged = (zoom) ->
       console.log 'onMapZoomChanged: zoom:', zoom
 
+    _update_current_position_marker = (data, current_position_marker) ->
+      position = new google.maps.LatLng data.lat, data.lon
+      console.log 'position:', position
+      if current_position_marker.marker is void
+        bee =
+          url: ICON_CURRENT_POSITION
+          size: new google.maps.Size 53, 51
+          scaledSize: new google.maps.Size 25, 25
+          origin: new google.maps.Point 0, 0
+          anchor: new google.maps.Point 12, 12
+
+        marker_opts =
+          map: $scope.myMap
+          position: position
+          fillColor: COLOR_CURRENT_POSITION
+          strokeColor: COLOR_CURRENT_POSITION
+          icon: bee
+        current_position_marker.marker = new google.maps.Marker marker_opts
+      else
+        current_position_marker.marker.setPosition position
+
     _set_markers_to_googlemap = (markers) ->
       markers |> map (marker) -> marker.setMap $scope.myMap
+
+    _remove_markers_from_googlemap = (markers) ->
+      console.log '_remove_markers_from_googlemap: markers:', markers
+      markers |> map (marker) -> marker.setMap void
+
+    _add_markers_to_googlemap = (markers, color) ->
+      markers |> map (marker) -> _add_marker_to_googlemap marker, color
+
+    _add_marker_to_googlemap = (data, color) ->
+      console.log '_add_marker_to_googlemap: data:', data, 'color:', color
+      positions = [val for key, val of data.latLng]
+
+      marker_opts =
+        map: $scope.myMap
+        position: data.latLng
+        fillColor: color
+        strokeColor: color
+
+      marker = new google.maps.Marker marker_opts
+      marker
+
+    _add_marker_paths_to_googlemap_from_markers = (markers, color) ->
+      console.log '_add_marker_paths_to_googlemap_from_markers:', markers
+
+      if markers.length < 2 then return []
+
+      the_markers = markers[0 to -2]
+      next_markers = markers[1 to -1]
+
+      idx_list = [0 to the_markers.length - 1]
+      marker_list = [{the_marker: the_markers[idx], next_marker: next_markers[idx]} for idx in idx_list]
+      marker_list |> map (x) -> _add_marker_path_to_googlemap x, color
+
+    _add_marker_path_to_googlemap = (data, color) ->
+      console.log 'data:', data
+      current_coord = [data.the_marker.latLng.e, data.the_marker.latLng.d]
+      next_coord = [data.next_marker.latLng.e, data.next_marker.latLng.d]
+      polyline_opts =
+        map: $scope.myMap
+        path: _parse_path [current_coord, next_coord]
+        fillColor: color
+        strokeColor: color
+
+      new google.maps.Polyline polyline_opts
 
     _parse_markers = (the_data_values) ->
       console.log '_parse_markers: the_data_values:', the_data_values
