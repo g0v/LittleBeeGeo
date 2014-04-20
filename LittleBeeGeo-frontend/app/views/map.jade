@@ -3,10 +3,10 @@ div(ng-controller="MapCtrl")
     button.btn.btn-report(type=button, ng-model="states.isReport", btn-checkbox, btn-checkbox-true="'yes'", btn-checkbox-false="'no'")
       div
         p Report: {{states.isReport}}
-    button.btn.btn-report(type=button, ng-model="dummy", ng-click="addPoint()")
+    button.btn.btn-report(type=button, ng-model="dummy", ng-click="onAddCurrentLocation()")
       div
         p Add current location
-    button.btn.btn-report(type=button, ng-model="dummy", ng-click="onClearDistList()")
+    button.btn.btn-report(type=button, ng-model="dummy", ng-click="onClearReportList()")
       div
         p Clear
   //  div(ng-class="distVincentyClass()")

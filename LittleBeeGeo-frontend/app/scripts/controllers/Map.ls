@@ -78,6 +78,12 @@ angular.module 'LittleBeeGeoFrontend'
     $scope.onMapZoomChanged = (zoom) ->
       console.log 'onMapZoomChanged: zoom:', zoom
 
+    $scope.onClearReportList = ->
+      console.log 'onClearReportList: start'
+      reportList.clearList!
+      _remove_markers_from_googlemap $scope.reportMarkers
+      $scope.reportMarkers = []
+
     _update_current_position_marker = (data, current_position_marker) ->
       position = new google.maps.LatLng data.lat, data.lon
       console.log 'position:', position
@@ -136,11 +142,11 @@ angular.module 'LittleBeeGeoFrontend'
 
     _add_marker_path_to_googlemap = (data, color) ->
       console.log 'data:', data
-      current_coord = [data.the_marker.latLng.e, data.the_marker.latLng.d]
-      next_coord = [data.next_marker.latLng.e, data.next_marker.latLng.d]
+      current_coord = data.the_marker.latLng
+      next_coord = data.next_marker.latLng
       polyline_opts =
         map: $scope.myMap
-        path: _parse_path [current_coord, next_coord]
+        path: [current_coord, next_coord]
         fillColor: color
         strokeColor: color
 
