@@ -5,7 +5,7 @@ window.onGoogleReady = ->
   console.log 'onGoogleReady: start'
   angular.bootstrap window.document, <[ LittleBeeGeoFrontend ]>
 
-angular.module 'LittleBeeGeoFrontend' <[ ngRoute ngCookies ngResource ui.map ui.event ui.bootstrap ]>
+angular.module 'LittleBeeGeoFrontend' <[ ngRoute ngCookies ngResource ui.map ui.event ui.bootstrap ui.select2 ]>
   .config <[ $routeProvider $locationProvider ]> ++ ($routeProvider, $locationProvider, config) ->
     $routeProvider
       .when '/view1' templateUrl: '/views/partial1.html'
