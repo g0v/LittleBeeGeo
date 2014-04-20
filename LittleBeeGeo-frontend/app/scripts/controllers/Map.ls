@@ -154,6 +154,10 @@ angular.module 'LittleBeeGeoFrontend'
       submit-form = (items) ->
         console.log 'MapCtrl: to submit-form: items:', items
 
+        reportList.clearList!
+        _remove_markers_from_googlemap $scope.reportMarkers
+        $scope.reportMarkers = []
+
       submit-dismissed = ->
         console.log 'dismissed: %s', new Date!.toDateString!
 
