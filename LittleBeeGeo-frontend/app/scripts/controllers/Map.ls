@@ -76,7 +76,6 @@ angular.module 'LittleBeeGeoFrontend'
       reportList.setMarker params[0], $scope.zoom, is_remove_same_point
       report_list = reportList.getList!
 
-
       _remove_markers_from_googlemap $scope.reportMarkers
 
       markers = _add_markers_to_googlemap report_list, COLOR_REPORT

@@ -59,7 +59,7 @@ angular.module 'LittleBeeGeoFrontend'
         the_list.data = the_list.data |> filter filterMinDiffByLatLonData
         console.log 'after remove_data: the_list:', the_list
 
-      result = if is_remove_same_point then void else min_diff_by_latlon
+      result = if is_remove_same_point then void else min_diff_by_latlon_data
 
     # Public API here
     do 
@@ -70,7 +70,7 @@ angular.module 'LittleBeeGeoFrontend'
         if the_marker is not void
           cache_list.data ++= [the_marker]
 
-        console.log 'after setMarker: params:', params, 'cache_list.data:', cache_list.data
+        console.log 'after setMarker: params:', params, 'the_marker:', the_marker, 'cache_list.data:', cache_list.data
 
       getList: ->
         cache_list.data
