@@ -1,10 +1,12 @@
 'use strict'
 
+cached_data =
+  data: {lat: 24.5, lon: 121.5}
+  data_timestamp: new Date!getTime!
+
 angular.module 'LittleBeeGeoFrontend'
   .factory 'geoAccelGyro', <[ $rootScope $window ]> ++ ($rootScope, $window) ->
     console.log 'to set send-event'
-
-    geo = {lat: 24.5, lon: 121.5}
 
     $window.ondeviceorientation = (event) ->
       yaw = event.alpha
@@ -26,7 +28,8 @@ angular.module 'LittleBeeGeoFrontend'
       lat = position.coords.latitude
       lon = position.coords.longitude
 
-      geo <<< {lat, lon}
+      cached_data.data <<< {lat, lon}
+      cached_data.data_timestamp = new Date!getTime!
 
       console.log 'got currentPosition: position:', position
 
@@ -37,4 +40,7 @@ angular.module 'LittleBeeGeoFrontend'
 
     do 
       getGeo: -> 
-        geo
+        cached_data.data
+
+      getDataTimestamp: ->
+        cached_data.data_timestamp

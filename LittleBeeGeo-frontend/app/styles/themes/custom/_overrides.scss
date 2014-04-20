@@ -14,6 +14,25 @@ body {
   //@include box-shadow(inset 0 0px 15px rgba(0, 0, 0, .5));
 }
 
+.brand a {
+  color: #00ffff
+}
+
+.btn-report {
+  color: rgba(255,255,255,.75);
+  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
+}
+
+.btn-zoom {
+  color: rgba(255,255,255,.75);
+  @include buttonBackground($green, $green);
+}
+
+.btn-clear {
+  color: rgba(255,255,255,.75);
+  @include buttonBackground($pink, $pink);
+}
+
 .map-canvas { 
   height: 500px
 }

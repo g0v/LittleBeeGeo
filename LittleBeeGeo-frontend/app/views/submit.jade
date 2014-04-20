@@ -1,0 +1,40 @@
+div.modal-header
+  h3 Submit
+div.modal-body
+  div.form-group
+    label 文宣:
+  div.form-group
+    label 暱稱:
+    input(type='text', ng-model='submit.user_name')
+  div.form-group
+    label 縣市:
+    input(type='text', ng-model='submit.county')
+  div.form-group
+    label 鄉鎮市區:
+    input(type='text', ng-model='submit.town')
+  div.form-group
+    label 路名:
+    input(type='text', ng-model='submit.address')
+  div.form-group
+    label 數量:
+    input(type='text', ng-model='submit.count')
+  div.form-group
+    label 發送時間:
+    p {{submit.the_date.toLocaleString()}}
+    div(style="display:inline-block; min-height:290px;")
+      div.well.well-sm(ng-model="submit.the_date")
+        datepicker
+      div(ng-model="submit.the_date", ng-change="timeChanged()")
+        timepicker
+  div.form-group
+    label 發送狀況:
+    p
+      input(type='text', style="display:inline-block; min-width: 290px; min-height:100px;", ng-model='submit.status')
+  div.form-group
+    label 備註:
+    p
+      input(type='text', style="display:inline-block; min-width: 290px; min-height:100px;", ng-model='submit.memo')
+
+div.modal-footer
+  button.btn.btn-primary(ng-click="onSubmitOk()") Submit
+  button.btn.btn-warning(ng-click="onSubmitCancel()") Cancel

@@ -49,22 +49,10 @@ pwd
 
 #requires
 pip install sniffer
-pip install MacFSEvents #for mac
-pip install pywin32     #for windows
-pip install pyinotify   #for linux
+#pip install MacFSEvents #for mac
+#pip install pywin32     #for windows
+#pip install pyinotify   #for linux
 
-echo "cp ${script_dir}/setup.py"
-cp ${script_dir}/setup.py ./
-cp ${script_dir}/*.md ./
-
-echo "remove CHANGES.txt"
-rm CHANGES.txt
-
-echo "remove MANIFEST.in"
-rm MANIFEST.in
-
-echo "remove README.txt"
-rm README.txt
 python setup.py egg_info
 python setup.py develop
 rm -rf scripts/.git
