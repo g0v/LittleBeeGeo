@@ -17,9 +17,27 @@ ICON_CURRENT_POSITION = \img/bee.png
 SubmitCtrl = <[ $scope $modalInstance items ]> ++ ($scope, $modalInstance, items) ->
     $scope.onSubmitOk = ->
       console.log 'to submit: items:', items
+      $modalInstance.close $scope.submit
 
     $scope.onSubmitCancel = ->
       $modalInstance.dismiss('cancel')
+
+    $scope.submit = {the_date: new Date!}
+
+    $scope.dateOptions =
+      \year-format: \'yyyy'
+      \starting-day: 0
+
+    $scope.date_opened = true
+
+    $scope.dateOpen = ($event) ->
+      $event.preventDefault!
+      $event.stopPropagation!
+
+      $scope.date_opened = true
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
+    $scope.format = $scope.formats[1];
 
 
 angular.module 'LittleBeeGeoFrontend'
@@ -134,7 +152,7 @@ angular.module 'LittleBeeGeoFrontend'
             {}
 
       submit-form = (items) ->
-        console.log 'to submit-form: items:', items
+        console.log 'MapCtrl: to submit-form: items:', items
 
       submit-dismissed = ->
         console.log 'dismissed: %s', new Date!.toDateString!
