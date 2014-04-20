@@ -25,7 +25,7 @@ body {
 
 .btn-zoom {
   color: rgba(255,255,255,.75);
-  @include buttonBackground($orange, $orange);
+  @include buttonBackground($green, $green);
 }
 
 .btn-clear {
