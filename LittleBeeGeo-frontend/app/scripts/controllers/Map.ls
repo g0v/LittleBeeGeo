@@ -14,6 +14,14 @@ COLOR_REPORT_PATH = \#0FF
 COLOR_CURRENT_POSITION = \#000
 ICON_CURRENT_POSITION = \img/bee.png
 
+SubmitCtrl = <[ $scope $modalInstance items ]> ++ ($scope, $modalInstance, items) ->
+    $scope.onSubmitOk = ->
+      console.log 'to submit: items:', items
+
+    $scope.onSubmitCancel = ->
+      $modalInstance.dismiss('cancel')
+
+
 angular.module 'LittleBeeGeoFrontend'
   .controller 'MapCtrl',  <[ $scope geoAccelGyro jsonData reportList $modal ]> ++ ($scope, geoAccelGyro, jsonData, reportList, $modal) ->
     geo = geoAccelGyro.getGeo!
@@ -116,15 +124,6 @@ angular.module 'LittleBeeGeoFrontend'
       latLng = current_position_marker.marker.getPosition!
 
       $scope.onMapClick {'event_type': 'onAddCurrentLocation', 'is_remove_same_point': false}, [{latLng}]
-
-    SubmitCtrl = ($scope, $modalInstance, items) ->
-      report_list = reportList.getList!
-
-      $scope.onSubmitOk = ->
-        console.log 'to submit: items:', items, 'report_list:', report_list
-
-      $scope.onSubmitCancel = ->
-        $modalInstance.dismiss('cancel')
 
     $scope.onSubmit = ->
       modalInstance = $modal.open do
