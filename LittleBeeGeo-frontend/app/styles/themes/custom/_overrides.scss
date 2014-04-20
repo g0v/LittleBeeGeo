@@ -23,6 +23,16 @@ body {
   @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
 }
 
+.btn-zoom {
+  color: rgba(255,255,255,.75);
+  @include buttonBackground($orange, $orange);
+}
+
+.btn-clear {
+  color: rgba(255,255,255,.75);
+  @include buttonBackground($pink, $pink);
+}
+
 .map-canvas { 
   height: 500px
 }

@@ -82,6 +82,24 @@ angular.module 'LittleBeeGeoFrontend'
       path_markers = _add_marker_paths_to_googlemap_from_markers report_list, COLOR_REPORT_PATH
       $scope.reportMarkers = markers ++ path_markers
 
+    $scope.onZoomIn = ->
+      console.log 'onZoomIn: zoom:', $scope.zoom
+      if $scope.zoom == 17
+        return
+
+      $scope.zoom += 1
+
+      $scope.myMap.setZoom $scope.zoom
+
+    $scope.onZoomOut = ->
+      console.log 'onZoomIn: zoom:', $scope.zoom
+      if $scope.zoom == 3
+        return
+
+      $scope.zoom -= 1
+
+      $scope.myMap.setZoom $scope.zoom
+
     $scope.onMapZoomChanged = (zoom) ->
       console.log 'onMapZoomChanged: zoom:', zoom
       $scope.zoom = zoom
@@ -98,6 +116,9 @@ angular.module 'LittleBeeGeoFrontend'
       latLng = current_position_marker.marker.getPosition!
 
       $scope.onMapClick {'event_type': 'onAddCurrentLocation', 'is_remove_same_point': false}, [{latLng}]
+
+    $scope.onSubmit = ->
+      console.log 'to submit'
 
     _MercatorProjection = ->
       pixel_origin = new google.maps.Point (TILE_SIZE / 2), (TILE_SIZE / 2)
