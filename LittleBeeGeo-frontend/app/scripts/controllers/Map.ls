@@ -15,7 +15,7 @@ COLOR_CURRENT_POSITION = \#000
 ICON_CURRENT_POSITION = \img/bee.png
 
 angular.module 'LittleBeeGeoFrontend'
-  .controller 'MapCtrl',  <[ $scope geoAccelGyro jsonData reportList ]> ++ ($scope, geoAccelGyro, jsonData, reportList) ->
+  .controller 'MapCtrl',  <[ $scope geoAccelGyro jsonData reportList $modal ]> ++ ($scope, geoAccelGyro, jsonData, reportList, $modal) ->
     geo = geoAccelGyro.getGeo!
 
     states = {isReport: "no"}
@@ -117,8 +117,30 @@ angular.module 'LittleBeeGeoFrontend'
 
       $scope.onMapClick {'event_type': 'onAddCurrentLocation', 'is_remove_same_point': false}, [{latLng}]
 
+    SubmitCtrl = ($scope, $modalInstance, items) ->
+      report_list = reportList.getList!
+
+      $scope.onSubmitOk = ->
+        console.log 'to submit: items:', items, 'report_list:', report_list
+
+      $scope.onSubmitCancel = ->
+        $modalInstance.dismiss('cancel')
+
     $scope.onSubmit = ->
-      console.log 'to submit'
+      modalInstance = $modal.open do
+        templateUrl: '/views/submit.html',
+        controller: SubmitCtrl,
+        resolve: 
+          items: ->
+            {}
+
+      submit-form = (items) ->
+        console.log 'to submit-form: items:', items
+
+      submit-dismissed = ->
+        console.log 'dismissed: %s', new Date!.toDateString!
+
+      modalInstance.result.then submit-form, submit-dismissed
 
     _MercatorProjection = ->
       pixel_origin = new google.maps.Point (TILE_SIZE / 2), (TILE_SIZE / 2)

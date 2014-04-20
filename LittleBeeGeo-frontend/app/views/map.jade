@@ -1,4 +1,5 @@
 div(ng-controller="MapCtrl")
+  script(src='/views/submit.html', type="text/ng-template", id="myModalContent.html")
   div.states
     button.btn.btn-zoom(type=button, ng-model="dummy", ng-click="onZoomIn()")
       div
@@ -16,7 +17,7 @@ div(ng-controller="MapCtrl")
       div
         p Submit
 
-    button.btn.btn-clear(type=button, ng-model="dummy", ng-click="onClearReportList()")
+    button.btn.btn-warning(type=button, ng-model="dummy", ng-click="onClearReportList()")
       div
         p Clear
 
