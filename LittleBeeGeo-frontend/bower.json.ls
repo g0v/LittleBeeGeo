@@ -1,4 +1,4 @@
-name: 'angular-brunch-seed-livescript-bower'
+name: 'LittleBeeGeoFrontend'
 version: 0.0.0
 dependencies: 
   angular: '~1.2.0-rc.2'
@@ -13,13 +13,19 @@ dependencies:
   'json3': '~3.2.4'
   'bootstrap-sass': '~3.0.0'
   'jquery': '~2.0.0'
+  'prelude-ls': '~1.1.1'
+  'angular-ui-map': '~0.5.0'
+  'angular-ui-bootstrap-bower': '~0.10.0'
 devDependencies: 
   'angular-mocks': '~1.2.0-rc.2'
   'angular-scenario': '~1.2.0-rc.2'
-homepage: 'https://github.com/chhsiao1981/angular-brunch-seed-livescript'
+homepage: 'https://github.com/KirstenLiu/LittleBeeGeo'
 authors: 
+  * 'Kirsten Liu'
   * 'Chuan-Heng Hsiao <hsiao.chuanheng@gmail.com>'
-description: 'angular-seed in brunch with livescript bower'
+  * 'Solring Lin'
+  * 'Beti Chiang'
+description: 'Little Bee Reporting with GIS'
 license: 'MIT'
 private: true
 ignore: 
