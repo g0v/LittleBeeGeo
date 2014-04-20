@@ -29,6 +29,8 @@ angular.module 'LittleBeeGeoFrontend'
       zoom: 16
       mapTypeId: google.maps.MapTypeId.ROADMAP
 
+    $scope.zoom = 16
+
     is_first_map_center = true
 
     current_position_marker = do
@@ -62,27 +64,56 @@ angular.module 'LittleBeeGeoFrontend'
     $scope.onMapIdle = ->
 
     $scope.reportMarkers = []
+
     $scope.onMapClick = (event, params) ->
       console.log 'onMapClick: event:', event, 'params:', params
 
-      if states.isReport is not "no"
-        reportList.setMarker params[0]
-        report_list = reportList.getList!
+      if states.isReport is "no"
+        return
 
-        _remove_markers_from_googlemap $scope.reportMarkers
+      is_remove_same_point = if event.is_remove_same_point == false then false else true
 
-        markers = _add_markers_to_googlemap report_list, COLOR_REPORT
-        path_markers = _add_marker_paths_to_googlemap_from_markers report_list, COLOR_REPORT_PATH
-        $scope.reportMarkers = markers ++ path_markers
+      reportList.setMarker params[0], $scope.zoom, is_remove_same_point
+      report_list = reportList.getList!
+
+
+      _remove_markers_from_googlemap $scope.reportMarkers
+
+      markers = _add_markers_to_googlemap report_list, COLOR_REPORT
+      path_markers = _add_marker_paths_to_googlemap_from_markers report_list, COLOR_REPORT_PATH
+      $scope.reportMarkers = markers ++ path_markers
 
     $scope.onMapZoomChanged = (zoom) ->
       console.log 'onMapZoomChanged: zoom:', zoom
+      $scope.zoom = zoom
 
     $scope.onClearReportList = ->
       console.log 'onClearReportList: start'
       reportList.clearList!
       _remove_markers_from_googlemap $scope.reportMarkers
       $scope.reportMarkers = []
+
+    $scope.onAddCurrentLocation = ->
+      if current_position_marker.marker is void then return
+
+      latLng = current_position_marker.marker.getPosition!
+
+      $scope.onMapClick {'event_type': 'onAddCurrentLocation', 'is_remove_same_point': false}, [{latLng}]
+
+    _MercatorProjection = ->
+      pixel_origin = new google.maps.Point (TILE_SIZE / 2), (TILE_SIZE / 2)
+      pixels_per_lon_deg = TILE_SIZE / 360;
+      piexls_per_lon_radius = TILE_SIZE / (2 * Math.PI);
+
+      return {pixel_origin, piexls_per_lon_deg, piexls_per_lon_radius}
+
+    _lat_lon_to_pixel = (latlon, map) ->
+      proj = $scope.myMap.getProjection!
+
+      p = new google.maps.Point(0, 0);
+
+      p.x = origin.x + latLng.lng()
+      p = proj.fromLatLngToContainerPixel latlon
 
     _update_current_position_marker = (data, current_position_marker) ->
       position = new google.maps.LatLng data.lat, data.lon
