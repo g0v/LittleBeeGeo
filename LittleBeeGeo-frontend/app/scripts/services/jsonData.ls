@@ -56,7 +56,7 @@ angular.module 'LittleBeeGeoFrontend'
         cached_data.data_timestamp
 
       reGetData: ->
-        is_first := false
+        is_first := true
         _get_data!
 
       getData: ->
@@ -67,7 +67,9 @@ angular.module 'LittleBeeGeoFrontend'
 
         url = 'http://' + CONFIG.BACKEND_HOST + '/post/json'
 
-        post_success = (the_data, getResponseHeader) ->
-          console.log 'the_data:', the_data
+        post_success = (the_data, status, headers, config, statusText) ->
+          console.log 'the_data:', the_data, 'is_first', is_first
+          is_first := true
+          _get_data!
 
         ($http.post url, data, {method: \POST, data}).success post_success
