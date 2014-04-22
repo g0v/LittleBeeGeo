@@ -41,8 +41,8 @@ print rowValues_list
 row_amount = 1
 row_num = row_num + row_amount
 
-col_num = length(rowValues_list)
-##and you can know how many column there is(col_count) or by the length of a row,
+
+##and you can know how many column there is(by col_count),
 ##and then next time you know how many rows you get (by head(cusor is moved) to get_all)
 
 
