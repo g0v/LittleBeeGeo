@@ -9,10 +9,8 @@ import gspread
 ##the users need to login into the google spreadsheet first, and then provide their accounts and passwords here.
 
 ###remember:: delete your OWN account
-#email = raw_input("please key in your gmail account: ")
-#password = raw_input("please key in your gmail account's password: ")
-email = 'basinwider@gmail.com'
-password = 'justfortest'
+email = raw_input("please key in your gmail account: ")
+password = raw_input("please key in your gmail account's password: ")
 
 print email , password
 
