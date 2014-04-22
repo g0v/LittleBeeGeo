@@ -3,7 +3,7 @@ div.modal-header
 div.modal-body
   div.form-group
     label 文宣:
-    select(ui-select2, ng-model='submit.ad_versions', multiple, data-placeholder="我這次發了哪些文宣?")
+    select.submit-select(ui-select2, ng-model='submit.ad_versions', multiple, data-placeholder="我這次發了哪些文宣?")
       option(ng-repeat='each_ad in Ads', value="{{each_ad.name}}") {{each_ad.name}}
   div.form-group
     label 暱稱:
