@@ -14,7 +14,7 @@ COLOR_REPORT_PATH = \#0FF
 COLOR_CURRENT_POSITION = \#000
 ICON_CURRENT_POSITION = \img/bee.png
 
-SubmitCtrl = <[ $scope $modalInstance items ]> ++ ($scope, $modalInstance, items) ->
+SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData ]> ++ ($scope, $modalInstance, items, TWCounties, TWTown, adData) ->
     $scope.onSubmitOk = ->
       console.log 'to submit: items:', items
       $modalInstance.close $scope.submit
@@ -22,7 +22,7 @@ SubmitCtrl = <[ $scope $modalInstance items ]> ++ ($scope, $modalInstance, items
     $scope.onSubmitCancel = ->
       $modalInstance.dismiss('cancel')
 
-    $scope.submit = {the_date: new Date!}
+    $scope.submit = {deliver_date: new Date!, ad_versions: []}
 
     $scope.dateOptions =
       \year-format: \'yyyy'
@@ -36,8 +36,28 @@ SubmitCtrl = <[ $scope $modalInstance items ]> ++ ($scope, $modalInstance, items
 
       $scope.date_opened = true
 
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
-    $scope.format = $scope.formats[1];
+    $scope.format = 'yyyy-MM-dd'
+
+    CountyOpts =
+      placeholder: "我在哪個城市? "
+
+    county_list = [{"name": ""}] ++ TWCounties.getCounties!
+
+    $scope.$watch (-> $scope.submit.county), ->
+      tw_town = TWTown.getTown!
+      town_list = [{"name": ""}] ++ tw_town[it]
+      $scope <<< {TWTown: town_list}
+
+    TownOpts =
+      placeholder: "我在哪個區域? "
+
+    ad_list = [{"name": ""}] ++ adData.getData!
+
+    AdOpts =
+      placeholder: "我這次發了哪些文宣? "
+      multiple: true
+
+    $scope <<< {TWCounties: county_list, CountyOpts, TWTown: [{"name": ""}], TownOpts, Ads: ad_list, AdOpts}
 
 
 angular.module 'LittleBeeGeoFrontend'
@@ -66,6 +86,8 @@ angular.module 'LittleBeeGeoFrontend'
 
       if data.event != 'devicegeo'
           return
+
+      console.log 'Map: geoAccelGyro:event: data:', data
 
       if is_first_map_center
         console.log 'to set is_first_map_center as false'
@@ -153,6 +175,18 @@ angular.module 'LittleBeeGeoFrontend'
 
       submit-form = (items) ->
         console.log 'MapCtrl: to submit-form: items:', items
+
+        report_list = reportList.getList!
+
+        console.log 'report_list:', report_list
+
+        line_info = [[each_data.latLng.lng!, each_data.latLng.lat!] for each_data in report_list]
+        geo_info = [{type: \LineString, coordinates: line_info}]
+        items.geo = geo_info
+        items.deliver_time = parseInt items.deliver_date.getTime! / 1000
+        items.count = parseInt items.count
+
+        jsonData.submitData [items]
 
         reportList.clearList!
         _remove_markers_from_googlemap $scope.reportMarkers
@@ -339,15 +373,18 @@ angular.module 'LittleBeeGeoFrontend'
           info_window.setContent _parse_content marker._value
 
     _parse_content = (value) ->
-      the_address = value.address
-      if value.start_number is not void
-        the_address += ' ' + value.start_number + ' 號'
-      if value.end_number is not void
-        the_address += ' ~ ' + value.end_number + ' 號'
+      the_user_name = if value.user_name then value.user_name else ''
+      the_address = if value.address then value.address else ''
+
+      deliver_datetime = new Date(value.deliver_time * 1000);
+      the_ad_versions = join ', ', value.ad_versions
+
       result = '<div>' + \
         '<p>' + _parse_content_join_str([value.county, value.town]) + '</p>' + \
         '<p>' + the_address + '</p>' + \
-        '<p>' + value.deliver_time + '</p>'
+        '<p>' + the_user_name + '</p>' + \
+        '<p>' + deliver_datetime.toLocaleString! + '</p>' + \
+        '<p>' + the_ad_versions + '</p>'
 
       #if value.deliver_status:
       #  result += '<p>' + value.deliver_status + '</p>'

@@ -30,7 +30,8 @@ body {
 
 .btn-clear {
   color: rgba(255,255,255,.75);
-  @include buttonBackground($pink, $pink);
+  @include buttonBackground($btnWarningBackground, $btnWarningBackgroundHighlight);
+  margin-left: 50px;
 }
 
 .map-canvas { 

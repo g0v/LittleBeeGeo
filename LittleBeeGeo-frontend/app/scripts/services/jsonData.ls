@@ -11,16 +11,12 @@ cached_data =
 is_first = true
 
 angular.module 'LittleBeeGeoFrontend'
-  .factory 'jsonData', <[ $resource constants ]> ++ ($resource, constants) -> do
-    getDataTimestamp: ->
-      cached_data.data_timestamp
-
-    getData: ->
+  .factory 'jsonData', <[ $resource $http constants ]> ++ ($resource, $http, constants) -> 
+    _get_data = ->
       if not is_first
         return cached_data.data
 
       is_first := false
-
 
       url = 'http://' + CONFIG.BACKEND_HOST + '/get/json'
       num_query = constants.NUM_QUERY
@@ -55,3 +51,25 @@ angular.module 'LittleBeeGeoFrontend'
 
       cached_data.data
 
+    do
+      getDataTimestamp: ->
+        cached_data.data_timestamp
+
+      reGetData: ->
+        is_first := true
+        _get_data!
+
+      getData: ->
+        _get_data!
+
+      submitData: (data) ->
+        console.log 'jsonData: submitData: data:', data
+
+        url = 'http://' + CONFIG.BACKEND_HOST + '/post/json'
+
+        post_success = (the_data, status, headers, config, statusText) ->
+          console.log 'the_data:', the_data, 'is_first', is_first
+          is_first := true
+          _get_data!
+
+        ($http.post url, data, {method: \POST, data}).success post_success

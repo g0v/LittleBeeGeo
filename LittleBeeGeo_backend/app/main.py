@@ -57,7 +57,7 @@ def g_static4(filepath):
     return static_file('static/views/' + filepath, root='.')
 
 
-@app.post('/post/json')
+@app.route('/post/json', method=["POST", "OPTIONS"])
 def p_json():
     data = _process_json_request()
     cfg.logger.debug('data: %s', data)
@@ -76,6 +76,8 @@ def _process_json_request():
 
 
 def _process_result(the_obj):
+    response.set_header('Accept', '*')
+    response.set_header('Access-Control-Allow-Headers', 'Content-Type, Accept')
     response.set_header('Access-Control-Allow-Origin', '*')
     response.set_header('Access-Control-Allow-Methods', '*')
     #cfg.logger.debug('the_obj: %s', the_obj)
