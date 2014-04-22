@@ -14,6 +14,7 @@ angular.module 'LittleBeeGeoFrontend'
         * name: \新竹縣
         * name: \苗栗縣
         * name: \彰化縣
+        * name: \南投縣
         * name: \雲林縣
         * name: \嘉義市
         * name: \嘉義縣
