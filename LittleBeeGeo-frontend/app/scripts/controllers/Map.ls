@@ -4,6 +4,8 @@
 
 LEGENDS = <[ ]>
 
+CONFIG = window.LittleBeeGeo.CONFIG
+
 # LEGEND_STRING =
 
 # LEGEND_COLOR =
@@ -15,49 +17,64 @@ COLOR_CURRENT_POSITION = \#000
 ICON_CURRENT_POSITION = \img/bee.png
 
 SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData ]> ++ ($scope, $modalInstance, items, TWCounties, TWTown, adData) ->
-    $scope.onSubmitOk = ->
-      console.log 'to submit: items:', items
-      $modalInstance.close $scope.submit
+  {BACKEND_HOST} = CONFIG
+  $scope <<< {BACKEND_HOST}
 
-    $scope.onSubmitCancel = ->
-      $modalInstance.dismiss('cancel')
+  $scope.formatAd = (data) ->
+    console.log 'formatAd: data:', data
+    '<table><tr><td class="poster-img"><img class="flag" src="http://' + BACKEND_HOST + '/get/thumbnail/' + data.element[0].id + '"/></td><td>' + data.text + '</td><tr>'
 
-    $scope.submit = {deliver_date: new Date!, ad_versions: []}
+  $scope.Ads = [{"name": ""}]
+  $scope.$watch (-> adData.getDataTimestamp!), ->
+    the_data = adData.getData!
 
-    $scope.dateOptions =
-      \year-format: \'yyyy'
-      \starting-day: 0
+    console.log 'adData: the_data:', the_data
+
+    data = [val for key, val of the_data]
+
+    $scope.Ads = [{"name": "", "the_type": ""}] ++ data
+
+  $scope.onSubmitOk = ->
+    console.log 'to submit: items:', items
+    $modalInstance.close $scope.submit
+
+  $scope.onSubmitCancel = ->
+    $modalInstance.dismiss('cancel')
+
+  $scope.submit = {deliver_date: new Date!, ad_versions: []}
+
+  $scope.dateOptions =
+    \year-format: \'yyyy'
+    \starting-day: 0
+
+  $scope.date_opened = true
+
+  $scope.dateOpen = ($event) ->
+    $event.preventDefault!
+    $event.stopPropagation!
 
     $scope.date_opened = true
 
-    $scope.dateOpen = ($event) ->
-      $event.preventDefault!
-      $event.stopPropagation!
+  $scope.format = 'yyyy-MM-dd'
 
-      $scope.date_opened = true
+  CountyOpts =
+    placeholder: "我在哪個城市? "
 
-    $scope.format = 'yyyy-MM-dd'
+  county_list = [{"name": ""}] ++ TWCounties.getCounties!
 
-    CountyOpts =
-      placeholder: "我在哪個城市? "
+  $scope.$watch (-> $scope.submit.county), ->
+    tw_town = TWTown.getTown!
+    town_list = [{"name": ""}] ++ tw_town[it]
+    $scope <<< {TWTown: town_list}
 
-    county_list = [{"name": ""}] ++ TWCounties.getCounties!
+  TownOpts =
+    placeholder: "我在哪個區域? "
 
-    $scope.$watch (-> $scope.submit.county), ->
-      tw_town = TWTown.getTown!
-      town_list = [{"name": ""}] ++ tw_town[it]
-      $scope <<< {TWTown: town_list}
+  AdOpts =
+    placeholder: "我這次發了哪些文宣? "
+    multiple: true
 
-    TownOpts =
-      placeholder: "我在哪個區域? "
-
-    ad_list = [{"name": ""}] ++ adData.getData!
-
-    AdOpts =
-      placeholder: "我這次發了哪些文宣? "
-      multiple: true
-
-    $scope <<< {TWCounties: county_list, CountyOpts, TWTown: [{"name": ""}], TownOpts, Ads: ad_list, AdOpts}
+  $scope <<< {TWCounties: county_list, CountyOpts, TWTown: [{"name": ""}], TownOpts, AdOpts}
 
 
 angular.module 'LittleBeeGeoFrontend'

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from app.constants import *
+import os
 import random
 import math
 import base64
@@ -16,6 +17,8 @@ import grequests
 import uuid as _uuid
 
 from app import cfg
+
+SPACER_GIF_BYTES = base64.b64decode("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
 
 def db_find(cf_name, key = None, fields={'_id': False}):
     result = []
@@ -60,14 +63,17 @@ def db_find_one(cf_name, key, fields={'_id': False}):
     return dict(result)
 
 
-def db_update(cf_name, key, val):
+def db_update(cf_name, key, val, upsert=True):
     if not key or not val:
         #cfg.logger.exception('not key or val: key: %s val: %s', key, val)
         return
 
     #cfg.logger.debug('cf_name: %s key: %s val: %s', cf_name, key, val)
-    result = cfg.config.get(cf_name).update(key, {'$set':val}, upsert=True, w=1)
-    #cfg.logger.debug('after update: result: %s', result)
+    result = {}
+    try:
+        result = cfg.config.get(cf_name).update(key, {'$set':val}, upsert=upsert, w=1)
+    except Exception as e:
+        cfg.logger.warning('unable to db_update: cf_name: %s key: %s val: %s e: %s', cf_name, key, val, e)
     return result
 
 
@@ -259,3 +265,18 @@ def get_milli_timestamp():
 
 def uuid():
     return str(_uuid.uuid4())
+
+
+def makedirs(dir_name):
+    if os.path.isdir(dir_name):
+        return
+
+    try:
+        os.makedirs(dir_name)
+        cfg.logger.debug('mkdirs: dir_name: %s', dir_name)
+    except Exception as e:
+        cfg.logger.error('unable to makedirs: dir_name: %s e: %s', dir_name, e)
+
+
+def empty_img():
+    return SPACER_GIF_BYTES

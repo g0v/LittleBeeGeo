@@ -5,20 +5,20 @@
 CONFIG = window.LittleBeeGeo.CONFIG
 
 cached_data = 
-  data: []
+  data: {}
   data_timestamp: new Date!getTime!
 
 is_first = true
 
 angular.module 'LittleBeeGeoFrontend'
-  .factory 'adData', <[ $resource $http constants ]> ++ ($resource, $http, constants) -> 
+  .factory 'imgInfo', <[ $resource $http constants ]> ++ ($resource, $http, constants)->
     _get_data = ->
       if not is_first
         return cached_data.data
 
       is_first := false
 
-      url = 'http://' + CONFIG.BACKEND_HOST + '/get/adData'
+      url = 'http://' + CONFIG.BACKEND_HOST + '/get/json'
       num_query = constants.NUM_QUERY
 
       cached_data.data
@@ -51,25 +51,17 @@ angular.module 'LittleBeeGeoFrontend'
 
       cached_data.data
 
-    do
-      getDataTimestamp: ->
-        cached_data.data_timestamp
-
-      reGetData: ->
-        is_first := true
-        _get_data!
-
-      getData: ->
-        _get_data!
-
-      submitData: (data) ->
-        console.log 'jsonData: submitData: data:', data
-
-        url = 'http://' + CONFIG.BACKEND_HOST + '/post/adData'
+    do 
+      postData: (data) ->
+        url = 'http://' + CONFIG.BACKEND_HOST + '/post/img_info'
 
         post_success = (the_data, status, headers, config, statusText) ->
-          console.log 'the_data:', the_data, 'is_first', is_first
+          console.log 'the_data:', the_data
           is_first := true
           _get_data!
 
         ($http.post url, data, {method: \POST, data}).success post_success
+
+      getData: ->
+        _get_data!
+        

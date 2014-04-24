@@ -19,7 +19,10 @@ from app import util
 from app.gevent_server import GeventServer
 from app.http_handlers.p_json_handler import p_json_handler
 from app.http_handlers.g_json_handler import g_json_handler
-
+from app.http_handlers.p_img_handler import p_img_handler
+from app.http_handlers.p_img_info_handler import p_img_info_handler
+from app.http_handlers.g_ad_data_handler import g_ad_data_handler
+from app.http_handlers.g_thumbnail_handler import g_thumbnail_handler
 
 app = Bottle()
 
@@ -56,6 +59,38 @@ def g_static4(filepath):
     cfg.logger.debug('filepath: %s', filepath)
     return static_file('static/views/' + filepath, root='.')
 
+@app.route('/post/img/<idx>', method=["OPTIONS"])
+def p_img2(idx):
+    return _process_result({"success": True})
+
+
+@app.post('/post/img/<idx>')
+def p_img(idx):
+    data = _process_body_request()
+    return _process_result(p_img_handler(data, request.content_type, idx))
+
+
+@app.route('/post/img_info', method=["OPTIONS"])
+def p_img_info2():
+    return _process_result({"success": True})
+
+
+@app.post('/post/img_info')
+def p_img_info():
+    data = _process_json_request()
+    return _process_result(p_img_info_handler(data))
+
+
+@app.get('/get/thumbnail/<img_id>')
+def g_thumbnail(img_id):
+    (content_type, content) = g_thumbnail_handler(img_id)
+    return _process_img_result(content_type, content)
+
+
+@app.get('/get/adData')
+def g_ad_data():
+    return _process_result(g_ad_data_handler())
+
 
 @app.route('/post/json', method=["POST", "OPTIONS"])
 def p_json():
@@ -70,9 +105,13 @@ def g_json():
 
 
 def _process_json_request():
+    return util.json_loads(_process_body_request())
+
+
+def _process_body_request():
     f = request.body
     f.seek(0)
-    return util.json_loads(f.read())
+    return f.read()
 
 
 def _process_result(the_obj):
@@ -83,6 +122,16 @@ def _process_result(the_obj):
     #cfg.logger.debug('the_obj: %s', the_obj)
     response.content_type = 'application/json'
     return util.json_dumps(the_obj)
+
+
+def _process_img_result(content_type, content):
+    response.set_header('Accept', '*')
+    response.set_header('Access-Control-Allow-Headers', 'Content-Type, Accept')
+    response.set_header('Access-Control-Allow-Origin', '*')
+    response.set_header('Access-Control-Allow-Methods', '*')
+    #cfg.logger.debug('the_obj: %s', the_obj)
+    response.content_type = content_type
+    return content
 
 
 def parse_args():

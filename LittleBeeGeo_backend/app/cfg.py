@@ -18,6 +18,7 @@ config = {}
 
 _mongo_map = {
     'bee': 'bee',
+    'bee_img': 'bee_img',
     'cacheDB': 'bee_cache',
 }
 
