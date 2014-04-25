@@ -15,6 +15,7 @@ ICON_REPORT = \report.png
 COLOR_REPORT_PATH = \#0FF
 COLOR_CURRENT_POSITION = \#000
 ICON_CURRENT_POSITION = \img/bee.png
+ICON_BEEZ_POSITION = \img/bee2.png
 
 SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData ]> ++ ($scope, $modalInstance, items, TWCounties, TWTown, adData) ->
   {BACKEND_HOST} = CONFIG
@@ -197,8 +198,13 @@ angular.module 'LittleBeeGeoFrontend'
 
         console.log 'report_list:', report_list
 
-        line_info = [[each_data.latLng.lng!, each_data.latLng.lat!] for each_data in report_list]
-        geo_info = [{type: \LineString, coordinates: line_info}]
+        geo_info = []
+        if report_list.length == 1
+          point_info = [report_list[0].latLng.lng!, report_list[0].latLng.lat!]
+          geo_info = [{type: \Point, coordinates: point_info}]
+        else
+          line_info = [[each_data.latLng.lng!, each_data.latLng.lat!] for each_data in report_list]
+          geo_info = [{type: \LineString, coordinates: line_info}]
         items.geo = geo_info
         items.deliver_time = parseInt items.deliver_date.getTime! / 1000
         items.count = parseInt items.count
@@ -246,6 +252,8 @@ angular.module 'LittleBeeGeoFrontend'
           fillColor: COLOR_CURRENT_POSITION
           strokeColor: COLOR_CURRENT_POSITION
           icon: bee
+          zIndex: 9999
+
         current_position_marker.marker = new google.maps.Marker marker_opts
       else
         current_position_marker.marker.setPosition position
@@ -359,11 +367,21 @@ angular.module 'LittleBeeGeoFrontend'
       polyline
 
     _parse_point = (coordinates, color, value) ->
+      console.log '_parse_point: coordinates:', coordinates, 'color:', color, 'value:', value
+
+      beez =
+        url: ICON_BEEZ_POSITION
+        size: new google.maps.Size 51, 46
+        scaledSize: new google.maps.Size 25, 25
+        origin: new google.maps.Point 0, 0
+        anchor: new google.maps.Point 12, 12
+
       marker_opts = 
         map: $scope.myMap
         position: new google.maps.LatLng coordinates[1], coordinates[0]
         fillColor: color
         strokeColor: color
+        icon: beez
 
       marker = new google.maps.Marker marker_opts
       marker._value = value
