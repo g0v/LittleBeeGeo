@@ -49,7 +49,7 @@ def _save_img(data, postfix, content_type):
     with open(the_dir + '/' + filename, 'w') as f:
         f.write(the_thumbnail)
 
-    db_data = {"filename": the_datetime.strftime('%Y-%m-%d/') + filename, "the_id": the_id, 'content_type': content_type}
+    db_data = {"filename": the_datetime.strftime('%Y-%m-%d/') + filename, "the_id": the_id, 'content_type': content_type, 'save_time': the_timestamp}
 
     util.db_insert('bee_img', [db_data])
 
