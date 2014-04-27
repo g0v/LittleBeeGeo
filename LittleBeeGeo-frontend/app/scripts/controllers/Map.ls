@@ -104,8 +104,6 @@ angular.module 'LittleBeeGeoFrontend'
 
     $scope.zoom = 16
 
-    #google.maps.event.addListener $scope.myMap, 'mouseover', _map_mouseover_handler
-
     is_first_map_center = true
 
     current_position_marker = do
@@ -123,7 +121,6 @@ angular.module 'LittleBeeGeoFrontend'
         is_first_map_center := false
 
         $scope.myMap.setCenter (new google.maps.LatLng data.lat, data.lon)
-        google.maps.event.addListener $scope.myMap, 'mouseover', _map_mouseover_handler
 
       _update_current_position_marker data, current_position_marker
 
@@ -181,6 +178,19 @@ angular.module 'LittleBeeGeoFrontend'
     $scope.onMapZoomChanged = (zoom) ->
       console.log 'onMapZoomChanged: zoom:', zoom
       $scope.zoom = zoom
+
+    $scope.onMapMouseover = (event) ->
+      if $scope.states.isReport is "yes"
+        console.log 'onMouseOver: reporting'
+        newOptions =
+          draggableCursor: "crosshair"
+          draggingCursor: "crosshair"
+        $scope.myMap.setOptions(newOptions)
+      else
+        newOptions =
+          draggableCursor: "pointer"
+          draggingCursor: "pointer"
+        $scope.myMap.setOptions(newOptions)
 
     $scope.onClearReportList = ->
       console.log 'onClearReportList: start'
@@ -444,16 +454,4 @@ angular.module 'LittleBeeGeoFrontend'
       the_list = [column for column in the_list when column]
       return join ' / ' the_list
 
-    _map_mouseover_handler = (event) ->
-      if $scope.states.isReport is "yes"
-        console.log 'onMouseOver: reporting'
-        newOptions = 
-          draggableCursor: "crosshair"
-          draggingCursor: "crosshair"
-        $scope.myMap.setOptions(newOptions)
-      else
-        newOptions = 
-          draggableCursor: "pointer"
-          draggingCursor: "pointer"
-        $scope.myMap.setOptions(newOptions)
       
