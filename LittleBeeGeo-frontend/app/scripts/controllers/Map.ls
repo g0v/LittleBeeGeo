@@ -1,4 +1,4 @@
-1'use strict'
+'use strict'
 
 {map, fold, fold1, mean, join} = require 'prelude-ls'
 
