@@ -91,6 +91,8 @@ angular.module 'LittleBeeGeoFrontend'
     $scope.mapOptions = 
       center: new google.maps.LatLng geo.lat, geo.lon
       zoom: 16
+      draggableCursor: 'pointer' 
+      draggingCursor: 'pointer' 
       mapTypeId: google.maps.MapTypeId.ROADMAP
 
     $scope.zoom = 16
@@ -127,7 +129,13 @@ angular.module 'LittleBeeGeoFrontend'
 
       $scope.markers = markers
 
-    $scope.onMapIdle = ->
+    $scope.onMapIdle = -> 
+      if states.isReport is "yes"
+        $scope.mapOptions.draggableCursor = "crosshair"
+        $scope.mapOptions.draggingCursor = "crosshair"
+      else
+        $scope.mapOptions.draggableCursor = "pointer"
+        $scope.mapOptions.draggingCursor = "pointer"
 
     $scope.reportMarkers = []
 
@@ -246,7 +254,7 @@ angular.module 'LittleBeeGeoFrontend'
           origin: new google.maps.Point 0, 0
           anchor: new google.maps.Point 12, 12
 
-        marker_opts =
+        marker_opt30=
           map: $scope.myMap
           position: position
           fillColor: COLOR_CURRENT_POSITION
@@ -254,7 +262,7 @@ angular.module 'LittleBeeGeoFrontend'
           icon: bee
           zIndex: 9999
 
-        current_position_marker.marker = new google.maps.Marker marker_opts
+        current_position_marker.marker = new google.maps.Marker marker_opt30
       else
         current_position_marker.marker.setPosition position
 
