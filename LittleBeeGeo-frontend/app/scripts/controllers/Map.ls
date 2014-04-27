@@ -445,7 +445,7 @@ angular.module 'LittleBeeGeoFrontend'
       return join ' / ' the_list
 
     _map_mouseover_handler = (event) ->
-      if states.isReport is "yes"
+      if $scope.states.isReport is "yes"
         console.log 'onMouseOver: reporting'
         newOptions = 
           draggableCursor: "crosshair"
