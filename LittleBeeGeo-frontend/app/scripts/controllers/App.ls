@@ -11,7 +11,7 @@ angular.module 'LittleBeeGeoFrontend'
     $scope.getClass = (id) ->
       if $scope.active-nav-id is id then 'active' else ''
 
-    $scope.pageTitle = 'Little Bee Report'
+    $scope.pageTitle = '小蜜蜂回報'
 
     $scope.awesomeThings = [
       'Livescript'

@@ -82,7 +82,7 @@ angular.module 'LittleBeeGeoFrontend'
   .controller 'MapCtrl',  <[ $scope geoAccelGyro jsonData reportList $modal ]> ++ ($scope, geoAccelGyro, jsonData, reportList, $modal) ->
     geo = geoAccelGyro.getGeo!
 
-    states = {isReport: "no"}
+    states = {isReport: "瀏覽 (按我回報資訊)"}
     #states <<< {['is_show_' + legend_type, true] for legend_type in LEGENDS}
     #the_legend_color = {[key, val] for key, val of LEGEND_COLOR}
     $scope <<< {states}

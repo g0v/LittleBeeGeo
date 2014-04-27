@@ -7,12 +7,12 @@ div(ng-controller="MapCtrl")
     button.btn.btn-zoom(type=button, ng-model="dummy", ng-click="onZoomOut()")
       div
         p -
-    button.btn.btn-report(type=button, ng-model="states.isReport", btn-checkbox, btn-checkbox-true="'yes'", btn-checkbox-false="'no'")
+    button.btn.btn-report(type=button, ng-model="states.isReport", btn-checkbox, btn-checkbox-true="'回報'", btn-checkbox-false="'瀏覽 (按我回報資訊)'")
       div
-        p Report: {{states.isReport}}
+        p {{states.isReport}}
     button.btn.btn-report(type=button, ng-model="dummy", ng-click="onAddCurrentLocation()")
       div
-        p Add current location
+        p 加現在的位置
     button.btn.btn-report(type=button, ng-model="dummy", ng-click="onSubmit()")
       div
         p 送出
