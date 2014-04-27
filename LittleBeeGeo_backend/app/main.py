@@ -32,76 +32,96 @@ def dummy():
 
 @app.get('/index.html')
 def g_index():
+    _log_entry()
     cfg.logger.debug('/index.html: static/index.html')
     return static_file('static/index.html', root='.')
 
 
 @app.get('/js/<filepath:path>')
 def g_static(filepath):
+    _log_entry()
     cfg.logger.debug('filepath: %s', filepath)
     return static_file('static/js/' + filepath, root='.')
 
 
 @app.get('/css/<filepath:path>')
 def g_static2(filepath):
+    _log_entry()
     cfg.logger.debug('filepath: %s', filepath)
     return static_file('static/css/' + filepath, root='.')
 
 
 @app.get('/font/<filepath:path>')
 def g_static3(filepath):
+    _log_entry()
     cfg.logger.debug('filepath: %s', filepath)
     return static_file('static/font/' + filepath, root='.')
 
 
 @app.get('/views/<filepath:path>')
 def g_static4(filepath):
+    _log_entry()
     cfg.logger.debug('filepath: %s', filepath)
     return static_file('static/views/' + filepath, root='.')
 
 @app.route('/post/img/<idx>', method=["OPTIONS"])
 def p_img2(idx):
+    _log_entry()
     return _process_result({"success": True})
 
 
 @app.post('/post/img/<idx>')
 def p_img(idx):
+    _log_entry()
     data = _process_body_request()
     return _process_result(p_img_handler(data, request.content_type, idx))
 
 
 @app.route('/post/img_info', method=["OPTIONS"])
 def p_img_info2():
+    _log_entry()
     return _process_result({"success": True})
 
 
 @app.post('/post/img_info')
 def p_img_info():
+    _log_entry()
     data = _process_json_request()
+    _log_entry(data)
     return _process_result(p_img_info_handler(data))
 
 
 @app.get('/get/thumbnail/<img_id>')
 def g_thumbnail(img_id):
+    _log_entry()
     (content_type, content) = g_thumbnail_handler(img_id)
     return _process_img_result(content_type, content)
 
 
 @app.get('/get/adData')
 def g_ad_data():
+    _log_entry()
     return _process_result(g_ad_data_handler())
 
 
 @app.route('/post/json', method=["POST", "OPTIONS"])
 def p_json():
     data = _process_json_request()
+    _log_entry(data)
     cfg.logger.debug('data: %s', data)
     return _process_result(p_json_handler(data))
 
 
 @app.get('/get/json')
 def g_json():
+    _log_entry()
     return _process_result(g_json_handler())
+
+
+def _log_entry(data=''):
+    cfg.logger.debug('log_entry_start: path: %s method: %s remote_route: %s content_type: %s content_length: %s', request.path, request.method, request.remote_route, request.content_type, request.content_length)
+    if data:
+        cfg.logger.debug('log_entry_data: path: %s method: %s remote_route: %s data: %s', request.path, request.method, request.remote_route, data)
 
 
 def _process_json_request():
