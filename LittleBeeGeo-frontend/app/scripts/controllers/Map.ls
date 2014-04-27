@@ -15,7 +15,7 @@ ICON_REPORT = \report.png
 COLOR_REPORT_PATH = \#0FF
 COLOR_CURRENT_POSITION = \#000
 ICON_CURRENT_POSITION = \img/bee.png
-ICON_BEEZ_POSITION = \img/littlebeeflower2.png
+ICON_BEEZ_POSITION = \img/littlebeeflower3.png
 
 _REPORT_TEXT_MAP = 
   yes: \回報
