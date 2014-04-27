@@ -1,4 +1,4 @@
-'use strict'
+1'use strict'
 
 {map, fold, fold1, mean, join} = require 'prelude-ls'
 
@@ -15,7 +15,7 @@ ICON_REPORT = \report.png
 COLOR_REPORT_PATH = \#0FF
 COLOR_CURRENT_POSITION = \#000
 ICON_CURRENT_POSITION = \img/bee.png
-ICON_BEEZ_POSITION = \img/bee2.png
+ICON_BEEZ_POSITION = \img/littlebeeflower2.png
 
 SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData ]> ++ ($scope, $modalInstance, items, TWCounties, TWTown, adData) ->
   {BACKEND_HOST} = CONFIG
@@ -241,8 +241,8 @@ angular.module 'LittleBeeGeoFrontend'
       if current_position_marker.marker is void
         bee =
           url: ICON_CURRENT_POSITION
-          size: new google.maps.Size 53, 51
-          scaledSize: new google.maps.Size 25, 25
+          size: new google.maps.Size 56, 56
+          scaledSize: new google.maps.Size  30, 30
           origin: new google.maps.Point 0, 0
           anchor: new google.maps.Point 12, 12
 
@@ -371,8 +371,8 @@ angular.module 'LittleBeeGeoFrontend'
 
       beez =
         url: ICON_BEEZ_POSITION
-        size: new google.maps.Size 51, 46
-        scaledSize: new google.maps.Size 25, 25
+        size: new google.maps.Size 50, 70
+        scaledSize: new google.maps.Size 25, 35
         origin: new google.maps.Point 0, 0
         anchor: new google.maps.Point 12, 12
 
