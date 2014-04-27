@@ -119,9 +119,9 @@ def g_json():
 
 
 def _log_entry(data=''):
-    cfg.logger.debug('log_entry_start: path: %s method: %s remote_route: %s content_type: %s content_length: %s', request.path, request.method, request.remote_route, request.content_type, request.content_length)
-    if data:
-        cfg.logger.debug('log_entry_data: path: %s method: %s remote_route: %s data: %s', request.path, request.method, request.remote_route, data)
+    cfg.logger.debug('log_entry_start: url: %s method: %s remote_route: %s', request.url, request.method, request.remote_route, request.content_type, request.content_length)
+    if query_string or request.content_length > 0:
+        cfg.logger.debug('log_entry_data: url: %s method: %s remote_route: %s query_string: %s content_type: %s content_length: %s content: %s', request.url, request.method, request.remote_route, request.query_string, request.content_type, request.content_length, data)
 
 
 def _process_json_request():
