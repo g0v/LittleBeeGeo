@@ -23,6 +23,45 @@ body {
   @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
 }
 
+.btn-group-browse {
+  color: rgba(255,255,255,.75);
+  font-size: 60%;
+  margin-top: 3px;
+  padding-top: 2px;
+  padding-bottom: 0px;
+  @include buttonBackground($grayLight, $grayLight);
+}
+
+.btn-group-browse.active  {
+  color: rgba(255,255,255,.75);
+  margin-top: 0px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
+}
+
+.btn-group-report {
+  color: rgba(255,255,255,.75);
+  font-size: 60%;
+  margin-top: 3px;
+  padding-top: 2px;
+  padding-bottom: 0px;
+  @include buttonBackground($grayLight, $grayLight);
+}
+
+.btn-group-report.active  {
+  color: rgba(255,255,255,.75);
+  margin-top: 0px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
+}
+
+.btn-group {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 .btn-zoom {
   color: rgba(255,255,255,.75);
   @include buttonBackground($green, $green);

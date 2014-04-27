@@ -7,9 +7,13 @@ div(ng-controller="MapCtrl")
     button.btn.btn-zoom(type=button, ng-model="dummy", ng-click="onZoomOut()")
       div
         p -
-    button.btn.btn-report(type=button, ng-model="states.isReport", btn-checkbox, btn-checkbox-true="'yes'", btn-checkbox-false="'no'")
-      div
-        p {{report_text[states.isReport]}}
+    div.btn-group
+      button.btn.btn-group-browse(type=button, ng-model="states.isReport", btn-radio="'no'")
+        div
+          p 瀏覽
+      button.btn.btn-group-report(type=button, ng-model="states.isReport", btn-radio="'yes'")
+        div
+          p 回報 發送的傳單
     button.btn.btn-report(type=button, ng-model="dummy", ng-click="onAddCurrentLocation()")
       div
         p 加現在的位置
