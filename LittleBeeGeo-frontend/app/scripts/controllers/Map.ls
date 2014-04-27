@@ -17,6 +17,10 @@ COLOR_CURRENT_POSITION = \#000
 ICON_CURRENT_POSITION = \img/bee.png
 ICON_BEEZ_POSITION = \img/littlebeeflower2.png
 
+_REPORT_TEXT_MAP = 
+  yes: \回報
+  no: "瀏覽 (按我回報資訊)"
+
 SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData ]> ++ ($scope, $modalInstance, items, TWCounties, TWTown, adData) ->
   {BACKEND_HOST} = CONFIG
   $scope <<< {BACKEND_HOST}
@@ -82,11 +86,13 @@ angular.module 'LittleBeeGeoFrontend'
   .controller 'MapCtrl',  <[ $scope geoAccelGyro jsonData reportList $modal ]> ++ ($scope, geoAccelGyro, jsonData, reportList, $modal) ->
     geo = geoAccelGyro.getGeo!
 
-    states = {isReport: "瀏覽 (按我回報資訊)"}
+    states = {isReport: "no"}
     #states <<< {['is_show_' + legend_type, true] for legend_type in LEGENDS}
     #the_legend_color = {[key, val] for key, val of LEGEND_COLOR}
     $scope <<< {states}
     #$scope <<< {states, LEGENDS, LEGEND_STRING, LEGEND_COLOR: the_legend_color, LEGEND_MAP}
+
+    $scope.report_text = _REPORT_TEXT_MAP
 
     $scope.mapOptions = 
       center: new google.maps.LatLng geo.lat, geo.lon
