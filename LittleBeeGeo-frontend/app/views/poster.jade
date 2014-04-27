@@ -1,0 +1,16 @@
+div(ng-controller='AdUploadCtrl')
+  div.form-group
+    label 文宣的種類:
+    select.submit-select(ui-select2, ng-model='data.poster_type', data-placeholder="這份文宣的種類", ng-required="true")
+      option(ng-repeat='each_poster_type in posterTypes', value="{{each_poster_type.name}}", ng-selected="{{each_poster_type.name == data.poster_type}}") {{each_poster_type.name}}
+  p 文宣的主題: 
+    input(type='text', ng-model='data.poster_name')
+  div.drop-box(ng-show="dropSupported", ng-file-drop="onFileSelect($files);", ng-file-drop-available="dropSupported=true") 拉檔案到這裡
+  div(ng-show="selectedFiles != null")
+    div.sel-file(ng-repeat="f in selectedFiles") {{($index + 1) + '.'}}
+      img(ng-show="dataUrls[$index]", ng-src="{{dataUrls[$index]}}")
+      poster_button.btn(ng-click="start($index)", ng-show="progress[$index] < 0") Start
+      span.progress(ng-show="progres[$index] >= 0")
+        div(style="width:{{progress[$index]}}%") {{progress[$index]}}%
+      poster_button.btn(ng-click="abort($index)", ng-show="hasUploader($index) && progress[$index] < 100") Abort
+      {{f.name}} - size: {{f.size}}B - type: {{f.type}} - 文宣主題: {{poster_names[$index]}}

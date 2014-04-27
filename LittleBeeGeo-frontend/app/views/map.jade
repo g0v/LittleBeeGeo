@@ -1,16 +1,31 @@
 div(ng-controller="MapCtrl")
-  //div.states
-  //  button.btn.btn-primary(type=button, ng-model="states.isDistVincenty", btn-checkbox, btn-checkbox-true="'yes'", btn-checkbox-false="'no'")
-  //    div 
-  //      p 估測距離: {{states.isDistVincenty}} 
-  //  button.btn.btn-primary(type=button, ng-model="dummy", ng-click="onClearDistList()", btn-checkbox, btn-checkbox-true="'yes'", btn-checkbox-false="'no'")
-  //    div 
-  //      p Clear
+  script(src='/views/submit.html', type="text/ng-template", id="myModalContent.html")
+  div.states
+    button.btn.btn-zoom(type=button, ng-model="dummy", ng-click="onZoomIn()")
+      div
+        p +
+    button.btn.btn-zoom(type=button, ng-model="dummy", ng-click="onZoomOut()")
+      div
+        p -
+    button.btn.btn-report(type=button, ng-model="states.isReport", btn-checkbox, btn-checkbox-true="'yes'", btn-checkbox-false="'no'")
+      div
+        p Report: {{states.isReport}}
+    button.btn.btn-report(type=button, ng-model="dummy", ng-click="onAddCurrentLocation()")
+      div
+        p Add current location
+    button.btn.btn-report(type=button, ng-model="dummy", ng-click="onSubmit()")
+      div
+        p Submit
+
+    button.btn.btn-clear(type=button, ng-model="dummy", ng-click="onClearReportList()")
+      div
+        p Clear
+
   //  div(ng-class="distVincentyClass()")
   //    p distance: {{distVincenty}} m
 
-  div#map-legend
-    span(ng-repeat="legend_type in LEGENDS")
-      button.btn(style="background-color: {{LEGEND_COLOR[legend_type]}}; color: white;", ng-click="onClickLegend(legend_type)") {{LEGEND_STRING[legend_type]}}
-      span(style="background-color: white; padding:2px;")
+  //div#map-legend
+  //  span(ng-repeat="legend_type in LEGENDS")
+  //    button.btn(style="background-color: {{LEGEND_COLOR[legend_type]}}; color: white;", ng-click="onClickLegend(legend_type)") {{LEGEND_STRING[legend_type]}}
+  //    span(style="background-color: white; padding:2px;")
   div.map-canvas(ui-map="myMap", ui-options="mapOptions", ui-event="{'map-idle' : 'onMapIdle()', 'map-click': 'onMapClick($event, $params)', 'map-zoom_changed': 'onMapZoomChanged(myMap.getZoom())'}")

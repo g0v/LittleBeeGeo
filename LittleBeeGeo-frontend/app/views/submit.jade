@@ -1,0 +1,44 @@
+div.modal-header
+  h3 Submit
+div.modal-body
+  div.form-group
+    label 文宣:
+    select.submit-select(ui-select2='{formatResult: formatAd, formatSelect: formatAd, placeholder: "我這次發了哪些文宣?"}', ng-model='submit.ad_versions', multiple)
+      option(ng-repeat='each_ad in Ads', id="{{each_ad.the_id}}", value="{{each_ad.name}}") {{each_ad.name}}
+  div.form-group
+    label 暱稱:
+    input(type='text', ng-model='submit.user_name')
+  div.form-group
+    label 縣市:
+    select(ui-select2="CountyOpts", ng-model='submit.county', ng-required="true")
+      option(ng-repeat='each_county in TWCounties', value="{{each_county.name}}") {{each_county.name}}
+  div.form-group
+    label 鄉鎮市區:
+    select(ui-select2="TownOpts", ng-model='submit.town', ng-required="true")
+      option(ng-repeat='each_town in TWTown', value="{{each_town.name}}") {{each_town.name}}
+  div.form-group
+    label 路名:
+    input(type='text', ng-model='submit.address')
+  div.form-group
+    label 數量:
+    input(type='text', ng-model='submit.count')
+  div.form-group
+    label 發送時間:
+    p {{submit.deliver_date.toLocaleString()}}
+    div(style="display:inline-block; min-height:290px;")
+      div.well.well-sm(ng-model="submit.deliver_date")
+        datepicker
+      div(ng-model="submit.deliver_date", ng-change="timeChanged()")
+        timepicker
+  div.form-group
+    label 發送狀況:
+    p
+      input(type='text', style="display:inline-block; min-width: 290px; min-height:100px;", ng-model='submit.deliver_status')
+  div.form-group
+    label 備註:
+    p
+      input(type='text', style="display:inline-block; min-width: 290px; min-height:100px;", ng-model='submit.memo')
+
+div.modal-footer
+  button.btn.btn-primary(ng-click="onSubmitOk()") Submit
+  button.btn.btn-warning(ng-click="onSubmitCancel()") Cancel
