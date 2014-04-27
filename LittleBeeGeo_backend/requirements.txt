@@ -16,6 +16,7 @@ greenlet==0.4.0
 grequests==0.2.0
 jedi==0.5b5
 lxml==3.2.1
+magickwand==0.2
 mmh3==2.2
 mock==1.0.1
 msgpack-python==0.3.0
