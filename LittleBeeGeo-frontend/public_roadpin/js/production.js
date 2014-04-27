@@ -1,1 +1,0 @@
-(function(){"use strict";var t;t={BACKEND_HOST:"localhost:6437"},window.LittleBeeGeo={CONFIG:t}}).call(this);
