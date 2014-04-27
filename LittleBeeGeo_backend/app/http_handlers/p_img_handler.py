@@ -74,8 +74,7 @@ def _parse_postfix(content_type):
 
 
 def _make_thumbnail(data, postfix):
-    if postfix not in _IMG_TYPES:
-        postfix = 'png'
+    postfix = 'png'
 
     converted_data = ''
     try:
