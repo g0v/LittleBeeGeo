@@ -65,7 +65,7 @@ def _parse_deliver_time(data):
     try:
         the_datetime = datetime.strptime(data['deliver_date'], '%Y-%m-%dT%H:%M:%S.%fZ')
     except Exception as e:
-        cfg.logger.exception('unable to strptime: deliver_date: %s e: %s', each_data.get('deliver_date', ''), e)
+        cfg.logger.exception('unable to strptime: deliver_date: %s e: %s', data.get('deliver_date', ''), e)
         return (S_ERR, None)
 
     return (S_OK, calendar.timegm(the_datetime.utctimetuple()))
