@@ -48,7 +48,7 @@ body {
   margin-top: 0px;
   padding-top: 4px;
   padding-bottom: 4px;
-  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackground);
+  @include buttonBackground($btnPrimaryBackgroundHighlight, $btnPrimaryBackground);
   outline: none;
 }
 
@@ -63,7 +63,7 @@ body {
   margin-top: 0px;
   padding-top: 4px;
   padding-bottom: 4px;
-  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackground);
+  @include buttonBackground($btnPrimaryBackgroundHighlight, $btnPrimaryBackground);
   outline: none;
 }
 
