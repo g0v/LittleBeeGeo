@@ -19,42 +19,52 @@ body {
 }
 
 .btn-report {
-  color: rgba(255,255,255,.75);
   @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
+}
+
+.btn-report:focus {
+  color: #FFF;
+  outline: none;
+}
+
+.btn-group > .btn:first-child {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.btn-group > .btn:last-child {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .btn-group-browse {
-  color: rgba(255,255,255,.75);
-  font-size: 60%;
-  margin-top: 3px;
-  padding-top: 2px;
-  padding-bottom: 0px;
-  @include buttonBackground($grayLight, $grayLight);
+  margin-top: 0px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  @include buttonBackground($grayLighter, $gray);
 }
 
 .btn-group-browse.active  {
-  color: rgba(255,255,255,.75);
   margin-top: 0px;
   padding-top: 4px;
   padding-bottom: 4px;
-  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
+  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackground);
+  outline: none;
 }
 
 .btn-group-report {
-  color: rgba(255,255,255,.75);
-  font-size: 60%;
-  margin-top: 3px;
-  padding-top: 2px;
-  padding-bottom: 0px;
-  @include buttonBackground($grayLight, $grayLight);
-}
-
-.btn-group-report.active  {
-  color: rgba(255,255,255,.75);
   margin-top: 0px;
   padding-top: 4px;
   padding-bottom: 4px;
-  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
+  @include buttonBackground($grayLighter, $gray);
+}
+
+.btn-group-report.active  {
+  margin-top: 0px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackground);
+  outline: none;
 }
 
 .btn-group {
@@ -63,15 +73,24 @@ body {
 }
 
 .btn-zoom {
-  color: rgba(255,255,255,.75);
   @include buttonBackground($green, $green);
 }
 
+.btn-zoom:focus {
+  color: #FFF;
+  outline: none;
+}
+
 .btn-clear {
-  color: rgba(255,255,255,.75);
   @include buttonBackground($btnWarningBackground, $btnWarningBackgroundHighlight);
   margin-left: 50px;
 }
+
+.btn-clear:focus {
+  color: #FFF;
+  outline: none;
+}
+
 
 .map-canvas { 
   height: 500px
