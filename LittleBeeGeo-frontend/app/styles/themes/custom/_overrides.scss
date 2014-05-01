@@ -205,3 +205,15 @@ img.flag {
 td.poster-img {
   max-width: 70px;
 }
+
+.navbar .nav.my-pull-right {
+  margin-left: 100px;
+}
+
+a.dropdown-toggle:hover {
+  cursor: pointer;
+}
+
+.dropdown-menu > li > a:hover {
+  cursor: pointer;
+}
