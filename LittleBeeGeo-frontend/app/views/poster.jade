@@ -9,8 +9,8 @@ div(ng-controller='AdUploadCtrl')
   div(ng-show="selectedFiles != null")
     div.sel-file(ng-repeat="f in selectedFiles") {{($index + 1) + '.'}}
       img(ng-show="dataUrls[$index]", ng-src="{{dataUrls[$index]}}")
-      poster_button.btn(ng-click="start($index)", ng-show="progress[$index] < 0") Start
-      span.progress(ng-show="progres[$index] >= 0")
+      button.poster_btn(ng-click="start($index)", ng-show="progress[$index] < 0") Start
+      span.progress(ng-show="progress[$index] >= 0")
         div(style="width:{{progress[$index]}}%") {{progress[$index]}}%
-      poster_button.btn(ng-click="abort($index)", ng-show="hasUploader($index) && progress[$index] < 100") Abort
+      button.poster_btn(ng-click="abort($index)", ng-show="hasUploader($index) && progress[$index] < 100") Abort
       {{f.name}} - size: {{f.size}}B - type: {{f.type}} - 文宣主題: {{poster_names[$index]}}
