@@ -1,7 +1,15 @@
 'use strict'
 
+empty-success = (items) ->
+  console.log 'empty-success: items:', items
+
+
+empty-dismissed = ->
+  console.log 'empty-dismissed'
+
+
 angular.module 'LittleBeeGeoFrontend'
-  .controller 'AppCtrl', <[ $scope $location $resource $rootScope version ]> ++ ($scope, $location, $resource, $rootScope, version) ->
+  .controller 'AppCtrl', <[ $scope $location $resource $rootScope version $modal ]> ++ ($scope, $location, $resource, $rootScope, version, $modal) ->
     $scope <<< {version}
 
     $scope.$watch (-> $location.path!), (active-nav-id, orig-active-nav-id) ->
@@ -13,10 +21,10 @@ angular.module 'LittleBeeGeoFrontend'
 
     $scope.pageTitle = '小蜜蜂回報'
 
-    $scope.awesomeThings = [
-      'Livescript'
-      'AngularJS'
-      'Karma'
-      'Yo'
-      'Bower'
-    ]
+    $scope.onHowtoReport = ->
+      modalInstance = $modal.open do
+        templateUrl: '/views/howto_report.html'
+
+    $scope.onHowtoAddPoster = ->
+      modalInstance = $modal.open do
+        templateUrl: '/views/howto_add_poster.html'

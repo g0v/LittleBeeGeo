@@ -13,9 +13,9 @@ nav.nav.pull-right
     a.dropdown-toggle(data-toggle="dropdown") 更多
     ul.dropdown-menu
       li
-        a 我要怎樣子回報?
+        a(ng-click="onHowtoReport()") 我要怎樣子回報?
       li
-        a 我要怎樣子加文宣?
-      li.divider
-      li
-        a 我想提供建議
+        a(ng-click="onHowtoAddPoster()") 我要怎樣子加文宣?
+      //li.divider
+      //li
+      //  a(ng-ref='#/feedback') 我想提供建議
