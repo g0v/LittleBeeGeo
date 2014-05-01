@@ -13,13 +13,13 @@ div(ng-controller="MapCtrl")
           p 瀏覽
       button.btn.btn-group-report(type=button, ng-model="states.isReport", btn-radio="'yes'")
         div
-          p 回報 發送的傳單
-    button.btn.btn-report(type=button, ng-model="dummy", ng-click="onAddCurrentLocation()")
+          p 增加發送的路線
+    button.btn(type=button, ng-model="dummy", ng-class="classBtnAddCurrentLocation", ng-click="onAddCurrentLocation()")
       div
         p 加現在的位置
     button.btn.btn-report(type=button, ng-model="dummy", ng-click="onSubmit()")
       div
-        p 送出
+        p 回報資料
 
     button.btn.btn-clear(type=button, ng-model="dummy", ng-click="onClearReportList()")
       div

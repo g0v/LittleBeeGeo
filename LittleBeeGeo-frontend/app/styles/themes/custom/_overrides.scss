@@ -22,6 +22,10 @@ body {
   @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
 }
 
+.btn-invalid {
+  @include buttonBackground($grayLight2, $grayLight2);
+}
+
 .btn-report:focus {
   color: #FFF;
   outline: none;

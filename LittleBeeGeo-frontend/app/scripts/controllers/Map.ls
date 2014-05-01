@@ -94,6 +94,8 @@ angular.module 'LittleBeeGeoFrontend'
 
     $scope.report_text = _REPORT_TEXT_MAP
 
+    $scope.classBtnAddCurrentLocation = "btn-invalid"
+
     $scope.mapOptions = 
       center: new google.maps.LatLng geo.lat, geo.lon
       zoom: 16
@@ -123,6 +125,10 @@ angular.module 'LittleBeeGeoFrontend'
         $scope.myMap.setCenter (new google.maps.LatLng data.lat, data.lon)
 
       _update_current_position_marker data, current_position_marker
+
+    $scope.$watch (-> $scope.states.isReport), (new_val) ->
+      console.log 'new_val:', new_val
+      $scope.classBtnAddCurrentLocation = if new_val is "yes" then "btn-report" else "btn-invalid"
 
     $scope.$watch (-> jsonData.getDataTimestamp!), ->
       the_data = jsonData.getData!
