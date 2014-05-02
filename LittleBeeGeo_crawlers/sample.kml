@@ -1,0 +1,639 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+	<Document>
+		<name>中正區小蜜蜂</name>
+		<description><![CDATA[]]></description>
+		<Folder>
+			<name>梅花里:Kyle Cheng</name>
+			<Placemark>
+				<styleUrl>#poly-EE9C96-4-76</styleUrl>
+				<name>●螢埔里-蔡秉寬</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51600956916809,25.02719646929695,0.0 121.51683568954468,25.023959175647786,0.0 121.51898145675659,25.023803627856985,0.0 121.52137666761018,25.02371370415661,0.0 121.52164757246112,25.02412929905861,0.0 121.51907534621728,25.025079597362264,0.0 121.51899218559265,25.02637986273625,0.0 121.51600956916809,25.02719646929695,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#line-F8971B-4</styleUrl>
+				<name>Yd</name>
+				<description><![CDATA[DM版本：Bee140405, 4/7 & 9發]]></description>
+				<LineString>
+					<tessellate>0</tessellate>
+					<coordinates>121.52993559837341,25.03521156310236,0.0 121.52918458092631,25.03507972821919,0.0 121.5275859826495,25.035501971910023,0.0 121.52750015203037,25.035073038779515,0.0 121.52734994900447,25.034151986082453,0.0 121.52778446576212,25.034098521634114,0.0 121.52799367904663,25.03493937929993,0.0 121.52900755529754,25.034662338026916,0.0 121.53009384828817,25.034659906431973,0.0 121.52993559837341,25.03521156310236,0.0</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-C6A4CF-4-76</styleUrl>
+				<name>●龍光里-郭曉芬</name>
+				<description><![CDATA[Bee140405+醫療, 4/6發]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51432514190674,25.031872409359543,0.0 121.50943279266357,25.030589216936917,0.0 121.51587009429932,25.02743950591457,0.0 121.51432514190674,25.031872409359543,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-DB4436-4-76</styleUrl>
+				<name>富水里 健軍國宅 Hsin-Yi Yu</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.53001070022583,25.015432921662917,0.0 121.53125524520874,25.01437317483543,0.0 121.53218865394592,25.015141249136406,0.0 121.53074026107788,25.016142655249844,0.0 121.53001070022583,25.015432921662917,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>螢雪●陳依卉</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51468992233276,25.027672820614583,0.0 121.51398181915283,25.02631181194415,0.0 121.51213645935059,25.023939732184626,0.0 121.51297330856323,25.02399806256462,0.0 121.51232957839966,25.021839820043702,0.0 121.51612758636475,25.020964846048805,0.0 121.51683568954468,25.02395917564771,0.0 121.51600956916809,25.0271964692969,0.0 121.51468992233276,25.027672820614583,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-795046-4-76</styleUrl>
+				<name>Ruby Tsai</name>
+				<description><![CDATA[醫療版(編號我再確認><)]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51900291442871,25.02644791349059,0.0 121.51960372924805,25.025106334517083,0.0 121.52192115783691,25.02436748766082,0.0 121.52286529541016,25.025339653652903,0.0 121.52136325836182,25.026700673104628,0.0 121.51900291442871,25.02644791349059,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-E6EEA3-4-76</styleUrl>
+				<name>幸福●蔡承哲、Andrea Sung</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51973247528076,25.045753360294423,0.0 121.51895999908447,25.04330389487308,0.0 121.52923822402954,25.040776617362187,0.0 121.52992486953735,25.043051169465702,0.0 121.51973247528076,25.045753360294423,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-FAD199-4-76</styleUrl>
+				<name>文祥●陳宜君</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.52439951896667,25.035576094034557,0.0 121.52734994900447,25.034151986082453,0.0 121.52810096740723,25.03720431897318,0.0 121.52513980865479,25.03790906634927,0.0 121.52439951896667,25.035576094034557,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-3F5BA9-4-76</styleUrl>
+				<name>文盛●Chloe Wu、維家</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.52917385101318,25.019739871978256,0.0 121.52755379676819,25.018417664026074,0.0 121.53251051902771,25.014917633063455,0.0 121.53335809707642,25.015656536797298,0.0 121.52917385101318,25.019739871978256,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>板溪●Connie Kuo</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.52232348918915,25.02694857145111,0.0 121.51907801628113,25.026370141196775,0.0 121.5191102027893,25.025082030414794,0.0 121.52073562145233,25.024600808201072,0.0 121.52169585227966,25.024114723241397,0.0 121.5223878622055,25.024897319081127,0.0 121.52256488800049,25.025222994140286,0.0 121.52276337146759,25.02543200902145,0.0 121.52324080467224,25.025757682661776,0.0 121.52232348918915,25.02694857145111,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>永昌●周蜜亞</name>
+				<description><![CDATA[周蜜亞-(部分)]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.50864958763123,25.028922018858864,0.0 121.50724411010742,25.026933989209276,0.0 121.50925040245056,25.024921623219857,0.0 121.51157855987549,25.024357765961913,0.0 121.5120452623471,25.024151180440064,0.0 121.51255488138827,25.024595948155255,0.0 121.51279628086468,25.024846281021265,0.0 121.51308059692383,25.025164664342487,0.0 121.51084899652346,25.025820882572024,0.0 121.51053518204935,25.025905936553343,0.0 121.51058078052006,25.026015303740493,0.0 121.5108624130437,25.02701904982422,0.0 121.51053786797922,25.027186741479902,0.0 121.50957227107506,25.027823497742165,0.0 121.50864958763123,25.028922018858864,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-4186F0-4-76</styleUrl>
+				<name>文北●許懿心</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.52595520019531,25.04019339207893,0.0 121.52513980865479,25.03790906634927,0.0 121.52895927429199,25.03684951358938,0.0 121.52956008911133,25.039337989979977,0.0 121.52595520019531,25.04019339207893,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>黎明●Su hui Liu</name>
+				<description><![CDATA[Su hui Liu-(部分)]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51337027549744,25.0471919124171,0.0 121.51325225830078,25.047269671510442,0.0 121.51314496994019,25.043401096814183,0.0 121.51500105857849,25.043352495853274,0.0 121.51505470275879,25.0467836763678,0.0 121.51337027549744,25.0471919124171,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>永功●blue、周蜜亞</name>
+				<description><![CDATA[blue-(部分)、周蜜亞-(部分)]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.50720119476318,25.030705871348,0.0 121.50947570800781,25.027983906191334,0.0 121.51065587997437,25.027167304870428,0.0 121.51398181915283,25.02631181194415,0.0 121.51443243026733,25.027381177170174,0.0 121.51398181915283,25.027964463365887,0.0 121.50962591171265,25.03025869550296,0.0 121.50915384292603,25.03039479267183,0.0 121.50898218154907,25.02957820739456,0.0 121.50797367095947,25.030453119983708,0.0 121.50720119476318,25.030705871348,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>網溪●陳昱芯</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.5172004699707,25.02413416667677,0.0 121.51707172393799,25.021742601018975,0.0 121.52243614196777,25.020712074622466,0.0 121.52500569820404,25.023239765462318,0.0 121.52329444885254,25.025261880656746,0.0 121.52310132980347,25.024989674782745,0.0 121.52241468429565,25.024270270637988,0.0 121.52187824249268,25.023589749322692,0.0 121.5172004699707,25.02413416667677,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-F4B400-4-76</styleUrl>
+				<name>三愛●Silke Lin、Lin Wan-Zhan、Jackie B Yang
+</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.52949571609497,25.038336773127202,0.0 121.52913093566895,25.03690783783253,0.0 121.52831554412842,25.037141134527882,0.0 121.52792930603027,25.035712185304877,0.0 121.52927041053772,25.035342794362716,0.0 121.53011798858643,25.03547888589183,0.0 121.53033256530762,25.03474010149021,0.0 121.52909874916077,25.03474982236653,0.0 121.52821898460388,25.034983123166043,0.0 121.52801513671875,25.034224893945353,0.0 121.52892708778381,25.034049917305836,0.0 121.53266072273254,25.033787451878638,0.0 121.53278946876526,25.038268728966838,0.0 121.52949571609497,25.038336773127202,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>龍福●WanChiWang、Natalie Tsai</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51226520855289,25.03530390867648,0.0 121.51441097457496,25.031765476768964,0.0 121.51503324672194,25.02974346985914,0.0 121.51630997750397,25.030054550014192,0.0 121.51900291386096,25.031512727727215,0.0 121.51673913070726,25.034720657694542,0.0 121.51226520855289,25.03530390867648,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>頂東●Alice Tsai 、Andrea Sung</name>
+				<description><![CDATA[Alice Tsai-(金門街到汀州路三段)]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.52243614196777,25.020712074622466,0.0 121.52260786436352,25.020556467420835,0.0 121.52535444639477,25.021100898228635,0.0 121.52735000990185,25.01857316334507,0.0 121.52887344360352,25.01973987197823,0.0 121.52500569820404,25.023239765462318,0.0 121.52243614196777,25.020712074622466,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-0BA9CC-4-76</styleUrl>
+				<name>東門●雅苹</name>
+				<description><![CDATA[雅苹-(部分區域)]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.5222430229187,25.041009906698903,0.0 121.52122378349304,25.03718001726732,0.0 121.52439951896667,25.035576094034532,0.0 121.525719165802,25.040183671634022,0.0 121.5222430229187,25.041009906698903,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7CCFA9-4-76</styleUrl>
+				<name>新營●Jane Chang</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51673913070726,25.034720657694596,0.0 121.52192115783691,25.027400620088134,0.0 121.5223503112793,25.03261121103025,0.0 121.51673913070726,25.034720657694596,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>水源里，蔡秉寬</name>
+				<description><![CDATA[水源里，蔡秉寬]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.53307914733887,25.015228750967005,0.0 121.52814388275146,25.01184530143838,0.0 121.53106212615967,25.008889568091956,0.0 121.53290748596191,25.00892845978201,0.0 121.53754234313965,25.01056189964437,0.0 121.53307914733887,25.015228750967005,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-7C3592-4-76</styleUrl>
+				<name>河堤里剩下的:蔡秉寬</name>
+				<description><![CDATA[河堤里剩下的:蔡秉寬]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.52735000990185,25.01857316334507,0.0 121.52535444639477,25.021100898228635,0.0 121.52260786436352,25.020556467420835,0.0 121.52466773986816,25.01744544321151,0.0 121.52735000990185,25.01857316334507,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-FFDD5E-4-76</styleUrl>
+				<name>南福里一半:blue</name>
+				<description><![CDATA[南福里一半:blue]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.5152907371521,25.029714305318272,0.0 121.51604175567627,25.02734229132537,0.0 121.51900291442871,25.02644791349059,0.0 121.5212345123291,25.026856217223774,0.0 121.51926040649414,25.02823666264192,0.0 121.51889562606812,25.029092142149615,0.0 121.5176510810852,25.030725313739186,0.0 121.51647090911865,25.030005943217652,0.0 121.5152907371521,25.029714305318272,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-009D57-4-76</styleUrl>
+				<name>南福里一半:kellin</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51780128479004,25.030705871348104,0.0 121.51848793029785,25.029694862767013,0.0 121.51928186416626,25.028469975826386,0.0 121.52136325836182,25.026700673104628,0.0 121.5221357345581,25.02693398920938,0.0 121.52177095413208,25.027381177170327,0.0 121.5217924118042,25.02757560621026,0.0 121.51895999908447,25.031386353202663,0.0 121.51780128479004,25.030705871348104,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#line-7C3592-4</styleUrl>
+				<name>林興●blue</name>
+				<LineString>
+					<tessellate>0</tessellate>
+					<coordinates>121.52719974517822,25.018437108363813,0.0 121.52490377426147,25.017406554218823,0.0 121.52842283248901,25.012292544366716,0.0 121.53114795684814,25.01425650490095,0.0 121.52971029281616,25.015462088877385,0.0 121.53052568435669,25.016181544642823,0.0 121.52735000990185,25.01857316334507,0.0 121.52702808380127,25.01849544135855,0.0</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-9FC3FF-4-76</styleUrl>
+				<name>光復●Connie</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.51106357574463,25.04975793645901,0.0 121.50827407836914,25.04209858440272,0.0 121.51323080062866,25.04231243067321,0.0 121.51348829269409,25.049233072274227,0.0 121.51123523712158,25.04975793645901,0.0 121.51106357574463,25.04975793645901,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-93D7E8-4-76</styleUrl>
+				<name>文北里　彥伶</name>
+				<description><![CDATA[文北里　彥伶]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.52260780334473,25.04244851446938,0.0 121.5222430229187,25.041009906698903,0.0 121.5293025970459,25.039240784818524,0.0 121.52973175048828,25.039240784818524,0.0 121.53024673461914,25.0406794133409,0.0 121.52260780334473,25.04244851446938,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-A61B4A-4-76</styleUrl>
+				<name>愛國里:志豪</name>
+				<description><![CDATA[愛國里:志豪]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.50501251220703,25.0333500082522,0.0 121.50737285614014,25.03156133364096,0.0 121.50780200958252,25.03603297127329,0.0 121.50840282440186,25.03700504484288,0.0 121.50690078735352,25.037549402677048,0.0 121.50629997253418,25.03576078929342,0.0 121.50501251220703,25.0333500082522,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#line-7C3592-4</styleUrl>
+				<name>梅花里:kyle Cheng</name>
+				<description><![CDATA[4/16林森北路5巷&9巷(100份)]]></description>
+				<LineString>
+					<tessellate>0</tessellate>
+					<coordinates>121.5242063999176,25.045189598778354,0.0 121.52346611022949,25.04536455952629,0.0 121.5236485004425,25.04583112030013,0.0 121.52530074119568,25.045422879720086,0.0</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-B7DBAB-4-76</styleUrl>
+				<name>Ying Chu 幸市+梅花未發放部分</name>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.52398109436035,25.04732799079811,0.0 121.52312278747559,25.044839676533616,0.0 121.53022527694702,25.04316781202614,0.0 121.52936697006226,25.041009906698903,0.0 121.53050422668457,25.040621090891175,0.0 121.52951717376709,25.03850202307383,0.0 121.53297185897827,25.038404817249855,0.0 121.53310060501099,25.045539520024494,0.0 121.52578353881836,25.047522388223307,0.0 121.52406692504883,25.0478528631388,0.0 121.52398109436035,25.04732799079811,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-DB4436-7-53</styleUrl>
+				<name>中正區</name>
+				<description><![CDATA[中正區]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.5108060836792,25.050632705106658,0.0 121.507887840271,25.039668486952493,0.0 121.50402545928955,25.032202926445834,0.0 121.50403618812561,25.030044828217854,0.0 121.50912165641785,25.024941066526736,0.0 121.51509761810303,25.024348044261707,0.0 121.51621341705322,25.02170371338695,0.0 121.52230739593506,25.02073151859632,0.0 121.52801513671875,25.011864746816823,0.0 121.53093338012695,25.008909013938545,0.0 121.53758525848389,25.011048038265475,0.0 121.52239322662354,25.0276922634857,0.0 121.52222156524658,25.032630653118826,0.0 121.52427077293396,25.035595535653453,0.0 121.52917385101318,25.033447218081434,0.0 121.53183460235596,25.03383605662929,0.0 121.53329372406006,25.035002564878855,0.0 121.53297185897827,25.045558960064437,0.0 121.52453899383545,25.047755664726665,0.0 121.51878833770752,25.048222216402078,0.0 121.5108060836792,25.050632705106658,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#line-7C3592-4</styleUrl>
+				<name>線條 76</name>
+				<LineString>
+					<tessellate>0</tessellate>
+					<coordinates>121.52488231658936,25.04608383997808,0.0 121.52541875839233,25.045928320237913,0.0 121.52530074119568,25.045422879720086,0.0</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#poly-F4EB37-4-76</styleUrl>
+				<name>忠勤里:黃史諾/許黛玲</name>
+				<description><![CDATA[忠勤里:黃史諾/許黛玲]]></description>
+				<Polygon>
+					<outerBoundaryIs>
+						<LinearRing>
+							<tessellate>0</tessellate>
+							<coordinates>121.5044116973877,25.03010315569677,0.0 121.50724411010742,25.026933989209276,0.0 121.50864958763123,25.028922018858864,0.0 121.50720119476318,25.030705871348,0.0 121.5044116973877,25.03010315569677,0.0</coordinates>
+						</LinearRing>
+					</outerBoundaryIs>
+				</Polygon>
+			</Placemark>
+		</Folder>
+		<Style id='poly-DB4436-4-76'>
+			<LineStyle>
+				<color>ff3644DB</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C3644DB</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-FFDD5E-4-76'>
+			<LineStyle>
+				<color>ff5EDDFF</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C5EDDFF</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='line-F8971B-4'>
+			<LineStyle>
+				<color>ff1B97F8</color>
+				<width>4</width>
+			</LineStyle>
+		</Style>
+		<Style id='poly-0BA9CC-4-76'>
+			<LineStyle>
+				<color>ffCCA90B</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4CCCA90B</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-4186F0-4-76'>
+			<LineStyle>
+				<color>ffF08641</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4CF08641</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-009D57-4-76'>
+			<LineStyle>
+				<color>ff579D00</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C579D00</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-A61B4A-4-76'>
+			<LineStyle>
+				<color>ff4A1BA6</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C4A1BA6</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-93D7E8-4-76'>
+			<LineStyle>
+				<color>ffE8D793</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4CE8D793</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-E6EEA3-4-76'>
+			<LineStyle>
+				<color>ffA3EEE6</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4CA3EEE6</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-DB4436-7-53'>
+			<LineStyle>
+				<color>ff3644DB</color>
+				<width>7</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>353644DB</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-FAD199-4-76'>
+			<LineStyle>
+				<color>ff99D1FA</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C99D1FA</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-B7DBAB-4-76'>
+			<LineStyle>
+				<color>ffABDBB7</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4CABDBB7</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-F4EB37-4-76'>
+			<LineStyle>
+				<color>ff37EBF4</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C37EBF4</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-795046-4-76'>
+			<LineStyle>
+				<color>ff465079</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C465079</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-7C3592-4-76'>
+			<LineStyle>
+				<color>ff92357C</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C92357C</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='line-7C3592-4'>
+			<LineStyle>
+				<color>ff92357C</color>
+				<width>4</width>
+			</LineStyle>
+		</Style>
+		<Style id='poly-7CCFA9-4-76'>
+			<LineStyle>
+				<color>ffA9CF7C</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4CA9CF7C</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-9FC3FF-4-76'>
+			<LineStyle>
+				<color>ffFFC39F</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4CFFC39F</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-3F5BA9-4-76'>
+			<LineStyle>
+				<color>ffA95B3F</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4CA95B3F</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-C6A4CF-4-76'>
+			<LineStyle>
+				<color>ffCFA4C6</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4CCFA4C6</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-EE9C96-4-76'>
+			<LineStyle>
+				<color>ff969CEE</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C969CEE</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Style id='poly-F4B400-4-76'>
+			<LineStyle>
+				<color>ff00B4F4</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4C00B4F4</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+	</Document>
+</kml>

@@ -1,0 +1,1 @@
+../LittleBeeGeo_backend/requirements.txt
