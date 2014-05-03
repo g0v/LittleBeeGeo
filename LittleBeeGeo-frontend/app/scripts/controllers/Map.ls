@@ -98,13 +98,13 @@ angular.module 'LittleBeeGeoFrontend'
 
     $scope.mapOptions = 
       center: new google.maps.LatLng geo.lat, geo.lon
-      zoom: 16
+      zoom: 7
       draggableCursor: 'pointer' 
       draggingCursor: 'pointer' 
       mapTypeId: google.maps.MapTypeId.ROADMAP
       disableDefaultUI: true
 
-    $scope.zoom = 16
+    $scope.zoom = 7
 
     is_first_map_center = true
 
@@ -123,6 +123,8 @@ angular.module 'LittleBeeGeoFrontend'
         is_first_map_center := false
 
         $scope.myMap.setCenter (new google.maps.LatLng data.lat, data.lon)
+        $scope.zoom = 16
+        $scope.myMap.setZoom(16)
 
       _update_current_position_marker data, current_position_marker
 
@@ -165,7 +167,7 @@ angular.module 'LittleBeeGeoFrontend'
 
     $scope.onZoomIn = ->
       console.log 'onZoomIn: zoom:', $scope.zoom
-      if $scope.zoom == 17
+      if $scope.zoom == 18
         return
 
       $scope.zoom += 1
@@ -174,7 +176,7 @@ angular.module 'LittleBeeGeoFrontend'
 
     $scope.onZoomOut = ->
       console.log 'onZoomIn: zoom:', $scope.zoom
-      if $scope.zoom == 3
+      if $scope.zoom == 4
         return
 
       $scope.zoom -= 1

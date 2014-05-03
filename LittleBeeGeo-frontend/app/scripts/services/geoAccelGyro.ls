@@ -1,7 +1,7 @@
 'use strict'
 
 cached_data =
-  data: {lat: 24.5, lon: 121.5}
+  data: {lat: 24.0, lon: 121.5}
   data_timestamp: new Date!getTime!
 
 angular.module 'LittleBeeGeoFrontend'
