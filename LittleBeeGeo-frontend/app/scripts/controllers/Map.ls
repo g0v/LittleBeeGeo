@@ -183,14 +183,14 @@ angular.module 'LittleBeeGeoFrontend'
       if $scope.zoom == 18
         return
 
-      _set_zoom $scope_zoom + 1
+      _set_zoom $scope.zoom + 1
 
     $scope.onZoomOut = ->
       console.log 'onZoomIn: zoom:', $scope.zoom
       if $scope.zoom == 4
         return
 
-      _set_zoom $scope_zoom - 1
+      _set_zoom $scope.zoom - 1
 
     $scope.onMapZoomChanged = (zoom) ->
       console.log 'onMapZoomChanged: zoom:', zoom
