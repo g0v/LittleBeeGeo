@@ -3,6 +3,7 @@
 cached_data =
   data: {lat: 24.0, lon: 121.5}
   data_timestamp: new Date!getTime!
+  is_first_map: true
 
 angular.module 'LittleBeeGeoFrontend'
   .factory 'geoAccelGyro', <[ $rootScope $window ]> ++ ($rootScope, $window) ->
@@ -44,3 +45,9 @@ angular.module 'LittleBeeGeoFrontend'
 
       getDataTimestamp: ->
         cached_data.data_timestamp
+
+      setFirstMap: ->
+        cached_data.is_first_map = it
+
+      getFirstMap: ->
+        cached_data.is_first_map

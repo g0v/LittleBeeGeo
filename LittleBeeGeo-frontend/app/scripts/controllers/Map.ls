@@ -103,13 +103,24 @@ angular.module 'LittleBeeGeoFrontend'
       draggingCursor: 'pointer' 
       mapTypeId: google.maps.MapTypeId.ROADMAP
       disableDefaultUI: true
-
     $scope.zoom = 7
-
-    is_first_map_center = true
 
     current_position_marker = do
       marker: void
+
+    $scope.$watch (-> $scope.myMap), (new_val, orig_val) ->
+      console.log '$watch $scope.myMap: new_val:', new_val, 'orig_val:', orig_val, 'firstmap:', geoAccelGyro.getFirstMap!
+
+      if geoAccelGyro.getFirstMap!
+        return
+
+      _set_zoom 16
+
+      data = geoAccelGyro.getGeo!
+
+      $scope.myMap.setCenter (new google.maps.LatLng data.lat, data.lon)
+
+      _update_current_position_marker data, current_position_marker
 
     $scope.$on 'geoAccelGyro:event', (e, data) ->
 
@@ -118,13 +129,11 @@ angular.module 'LittleBeeGeoFrontend'
 
       console.log 'Map: geoAccelGyro:event: data:', data
 
-      if is_first_map_center
-        console.log 'to set is_first_map_center as false'
-        is_first_map_center := false
+      if geoAccelGyro.getFirstMap!
+        geoAccelGyro.setFirstMap false
 
         $scope.myMap.setCenter (new google.maps.LatLng data.lat, data.lon)
-        $scope.zoom = 16
-        $scope.myMap.setZoom(16)
+        _set_zoom 16
 
       _update_current_position_marker data, current_position_marker
 
@@ -165,23 +174,23 @@ angular.module 'LittleBeeGeoFrontend'
       path_markers = _add_marker_paths_to_googlemap_from_markers report_list, COLOR_REPORT_PATH
       $scope.reportMarkers = markers ++ path_markers
 
+    _set_zoom = ->
+      $scope.zoom = it
+      $scope.myMap.setZoom it
+
     $scope.onZoomIn = ->
       console.log 'onZoomIn: zoom:', $scope.zoom
       if $scope.zoom == 18
         return
 
-      $scope.zoom += 1
-
-      $scope.myMap.setZoom $scope.zoom
+      _set_zoom $scope_zoom + 1
 
     $scope.onZoomOut = ->
       console.log 'onZoomIn: zoom:', $scope.zoom
       if $scope.zoom == 4
         return
 
-      $scope.zoom -= 1
-
-      $scope.myMap.setZoom $scope.zoom
+      _set_zoom $scope_zoom - 1
 
     $scope.onMapZoomChanged = (zoom) ->
       console.log 'onMapZoomChanged: zoom:', zoom
