@@ -36,8 +36,8 @@ def export_csv_hq(filename, out_filename=None):
         road_list = re.split(ur'[~，。]', road, flags=re.UNICODE)
         road_list = [road for road in road_list if road]
 
-        for each_road in road_list:
-            cfg.logger.debug('county_name: %s, each_road: %s', county_name, each_road)
+        #for each_road in road_list:
+        #    cfg.logger.debug('county_name: %s, each_road: %s', county_name, each_road)
 
         #for each_road in road_list:
         #    (error_code, geo) = _get_geo(county_name, each_road)
