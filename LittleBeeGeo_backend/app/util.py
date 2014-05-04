@@ -280,3 +280,12 @@ def makedirs(dir_name):
 
 def empty_img():
     return SPACER_GIF_BYTES
+
+
+def df_to_dict_list(df):
+    if not len(df):
+        return []
+
+    results = [dict(row) for (idx, row) in df.iterrows()]
+
+    return results
