@@ -19,6 +19,7 @@ dependencies:
   'angular-ui-select2': '~0.0.5'
   'select2': '~3.4.6'
   'angular-ui-utils': '~0.1.1'
+  'ng-file-upload': '~1.3.2'
 devDependencies: 
   'angular-mocks': '~1.2.0-rc.2'
   'angular-scenario': '~1.2.0-rc.2'
