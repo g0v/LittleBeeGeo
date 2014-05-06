@@ -29,7 +29,7 @@ _SCALE_BY_ZOOM = [
 
 
 angular.module 'LittleBeeGeoFrontend'
-  .service 'reportList', <[ constants ]> ++ (constants) ->
+  .service 'reportList', <[ constants geoData ]> ++ (constants, geoData) ->
     console.log 'constants:', constants
     diffByLatLon = (a, b) ->
       google.maps.geometry.spherical.computeDistanceBetween a.latLng, b.latLng
@@ -68,6 +68,7 @@ angular.module 'LittleBeeGeoFrontend'
         the_marker = _check_same_point params, cache_list, zoom, is_remove_same_point
 
         if the_marker is not void
+          geoData.queryGeoInfo params.latLng
           cache_list.data ++= [the_marker]
 
         console.log 'after setMarker: params:', params, 'the_marker:', the_marker, 'cache_list.data:', cache_list.data

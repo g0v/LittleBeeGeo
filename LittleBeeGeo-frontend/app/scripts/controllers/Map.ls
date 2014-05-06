@@ -21,8 +21,11 @@ _REPORT_TEXT_MAP =
   yes: \回報
   no: "瀏覽 (按我回報資訊)"
 
-SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData ]> ++ ($scope, $modalInstance, items, TWCounties, TWTown, adData) ->
+SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData geoData ]> ++ ($scope, $modalInstance, items, TWCounties, TWTown, adData, geoData) ->
   {BACKEND_HOST} = CONFIG
+
+  console.log 'start: items:', items
+
   $scope <<< {BACKEND_HOST}
 
   $scope.formatAd = (data) ->
@@ -46,7 +49,37 @@ SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData ]> ++ ($sco
   $scope.onSubmitCancel = ->
     $modalInstance.dismiss('cancel')
 
-  $scope.submit = {deliver_date: new Date!, ad_versions: []}
+  _parse_geo = (geo) ->
+    console.log '_parse_geo: geo:', geo
+    if not geo or geo.length == 0
+      return {county: '', town: '', address: ''}
+
+    county = ''
+    town = ''
+    address_list = []
+    pre_address = ''
+    for each_geo in geo
+      geo_info = geoData.getGeoInfo each_geo.latLng
+      if county == '' and geo_info.county != ''
+        county = geo_info.county
+
+      if town == '' and geo_info.town != ''
+        town = geo_info.town
+
+      if geo_info.address
+        if pre_address != geo_info.address
+          address_list ++= [geo_info.address]
+        pre_address = geo_info.address
+
+    address = join '~', address_list
+
+    {county, town, address}
+
+  geo = items.geo
+
+  {county, town, address} = _parse_geo geo
+
+  $scope.submit = {deliver_date: new Date!, ad_versions: [], county, town, address}
 
   $scope.dateOptions =
     \year-format: \'yyyy'
@@ -198,7 +231,6 @@ angular.module 'LittleBeeGeoFrontend'
 
     $scope.onMapMouseover = (event) ->
       if $scope.states.isReport is "yes"
-        console.log 'onMouseOver: reporting'
         newOptions =
           draggableCursor: "crosshair"
           draggingCursor: "crosshair"
@@ -231,7 +263,7 @@ angular.module 'LittleBeeGeoFrontend'
         controller: SubmitCtrl,
         resolve: 
           items: ->
-            {}
+            {geo: reportList.getList!}
 
       submit-form = (items) ->
         console.log 'MapCtrl: to submit-form: items:', items

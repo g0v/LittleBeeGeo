@@ -25,13 +25,15 @@ def export_csv_hq(filename, out_filename=None):
     the_dict_list = util.df_to_dict_list(df)
 
     for each_dict in the_dict_list:
-        for (key, val) in each_dict.iteritems():
-            cfg.logger.debug('key: %s val: %s', key, val)
+        #for (key, val) in each_dict.iteritems():
+        #    cfg.logger.debug('key: %s val: %s', key, val)
 
         county_name = each_dict.get(u'縣市區', '')
         road = each_dict.get(u'路名（區域）', '')
 
-        cfg.logger.debug('county_name: %s road: %s', county_name, road)
+        road_replace_to = re.sub(ur'到', '~', road, flags=re.UNICODE)
+
+        cfg.logger.debug('county_name: %s road_replace_to: %s', county_name, road_replace_to)
 
         road_list = re.split(ur'[~，。]', road, flags=re.UNICODE)
         road_list = [road for road in road_list if road]
