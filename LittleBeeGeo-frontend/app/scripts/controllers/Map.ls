@@ -88,7 +88,7 @@ SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData geoData ]> 
         street_number_map[each_geo.address] ++= [each_geo.street_number]
 
       if each_geo.landmark
-        landmark_map[eacho_geo.address] ++= [each_geo.landmark]
+        landmark_map[each_geo.address] ++= [each_geo.landmark]
 
     console.log 'street_number_map:', street_number_map, 'landmark_map:', landmark_map
 
