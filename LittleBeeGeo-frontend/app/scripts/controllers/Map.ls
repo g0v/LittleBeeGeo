@@ -71,7 +71,8 @@ SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData geoData ]> 
 
   _parse_geo_address = (geo) ->
     address_list = []
-    address_map = {}
+    street_number_map = {}
+    landmark_map = {}
     for each_geo in geo
       console.log 'each_geo:', each_geo
       if not each_geo.address
@@ -80,16 +81,18 @@ SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData geoData ]> 
       if each_geo.address not in address_list
         console.log 'address not in address_list: address:', each_geo.address
         address_list ++= [each_geo.address]
-        address_map[each_geo.address] = []
+        street_number_map[each_geo.address] = []
+        landmark_map[each_geo.address] = []
 
-      if each_geo.street_number is void
-        continue
+      if each_geo.street_number
+        street_number_map[each_geo.address] ++= [each_geo.street_number]
 
-      address_map[each_geo.address] ++= [each_geo.street_number]
+      if each_geo.landmark
+        landmark_map[eacho_geo.address] ++= [each_geo.landmark]
 
     console.log 'address_map:', address_map
 
-    parsed_address_list = address_list |> map (each_address) -> _parse_each_geo_address each_address, address_map
+    parsed_address_list = address_list |> map (each_address) -> _parse_each_geo_address each_address, street_number_map, landmark_map
 
     console.log 'parsed_address_list:', parsed_address_list
 
@@ -97,7 +100,7 @@ SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData geoData ]> 
 
     join ' ~ ', parsed_address_list
 
-  _parse_each_geo_address = (address, address_map) ->
+  _parse_each_geo_address = (address, street_number_map, landmark_map) ->
     street_number_list = address_map[address]
     console.log 'address:', address, 'street_number_list:', street_number_list
 

@@ -5,6 +5,8 @@
 # 1. use queryGeoInfo to query from google map
 # 2. use getGeoInfo to get data from cached_data
 
+_LANDMARK_TYPE_LIST = <[ accounting airport amusement_park aquarium art_gallery atm bakery bank bar beauty_salon bicycle_store book_store bowling_alley bus_station cafe campground car_dealer car_rental car_repair car_wash casino cemetery church city_hall clothing_store convenience_store courthouse dentist department_store doctor electrician electronics_store embassy establishment finance fire_station florist food funeral_home furniture_store gas_station general_contractor grocery_or_supermarket gym hair_care hardware_store health hindu_temple home_goods_store hospital insurance_agency jewelry_store laundry lawyer library liquor_store local_government_office locksmith lodging meal_delivery meal_takeaway mosque movie_rental movie_theater moving_company museum night_club painter park parking pet_store pharmacy physiotherapist place_of_worship plumber police post_office real_estate_agency restaurant roofing_contractor rv_park school shoe_store shopping_mall spa stadium storage store subway_station synagogue taxi_stand train_station travel_agency university veterinary_care zoo ]>
+
 cached_data = 
   data: {}
 
@@ -788,11 +790,11 @@ angular.module 'LittleBeeGeoFrontend'
 
       latlon = config.params.latlng
 
-      {county, town, address, street_number} = _parse_data data
+      {county, town, address, street_number, landmark} = _parse_data data
 
-      console.log 'setup data: latlon:', latlon, 'county:', county, 'town:', town, 'address:', address, 'street_number:', street_number
+      console.log 'setup data: latlon:', latlon, 'county:', county, 'town:', town, 'address:', address, 'street_number:', street_number, 'landmark:', landmark
 
-      cached_data.data[latlon] = {county, town, address, street_number}
+      cached_data.data[latlon] = {county, town, address, street_number, landmark}
 
     _parse_priority = ->
       the_types = it.types
@@ -820,84 +822,100 @@ angular.module 'LittleBeeGeoFrontend'
 
       results |> sort-by (.priority)
 
-      first_result = head results
-
-      address_components = first_result.address_components
-
       postal_code = ''
       county = ''
       town = ''
       address = ''
-
-      # postal code for county and town
-      for each_address_component in address_components
-        the_types = each_address_component.types
-        for each_type in the_types
-          if each_type == 'postal_code'
-            postal_code = each_address_component.short_name
-            break
-        if postal_code
+      landmark = ''
+      
+      for each_result in results
+        if postal_code and country and town and address and establishment
           break
 
-      if postal_code
-        county = _COUNTY_BY_POSTAL_CODE_MAP[postal_code]
-        town = _TOWN_BY_POSTAL_CODE_MAP[postal_code]
+        address_components = each_result.address_components
 
-      # county
-      if not county
-        for each_address_component in address_components
-          the_types = each_address_component.types
-          for each_type in the_types
-            if each_type == 'administrative_area_level_2'
-              county = each_address_component.long_name
+        # postal code for county and town
+        if not postal_code
+          for each_address_component in address_components
+            the_types = each_address_component.types
+            for each_type in the_types
+              if each_type == 'postal_code'
+                postal_code = each_address_component.short_name
+                break
+            if postal_code
               break
-          if county
-            break
 
-      # town
-      if not town
-        for each_address_component in address_components
-          the_types = each_address_component.types
-          for each_type in the_types
-            if each_type == 'locality'
-              town = each_address_component.long_name
+          if postal_code
+            county = _COUNTY_BY_POSTAL_CODE_MAP[postal_code]
+            town = _TOWN_BY_POSTAL_CODE_MAP[postal_code]
+
+        # county
+        if not county
+          for each_address_component in address_components
+            the_types = each_address_component.types
+            for each_type in the_types
+              if each_type == 'administrative_area_level_2'
+                county = each_address_component.long_name
+                break
+            if county
               break
-          if town
-            break
 
-      # address
-      for each_address_component in address_components
-        the_types = each_address_component.types
-        for each_type in the_types
-          if each_type == 'route'
-            address = each_address_component.long_name
-            break
-        if address
-          break
+        # town
+        if not town
+          for each_address_component in address_components
+            the_types = each_address_component.types
+            for each_type in the_types
+              if each_type == 'locality'
+                town = each_address_component.long_name
+                break
+            if town
+              break
 
-      if not address
+        # address
+        if not address
+          for each_address_component in address_components
+            the_types = each_address_component.types
+            for each_type in the_types
+              if each_type == 'route'
+                address = each_address_component.long_name
+                break
+            if address
+              break
+
+        if not address
+          for each_address_component in address_components
+            the_types = each_address_component.types
+            for each_type in the_types
+              if each_type in _LANDMARK_TYPE_LIST
+                address = each_address_component.long_name
+                break
+            if address
+              break
+
+        # street number
         for each_address_component in address_components
           the_types = each_address_component.types
           for each_type in the_types
-            if each_type == 'bus_station' or each_type == 'establishment'
-              address = each_address_component.long_name
+            if each_type == 'street_number'
+              street_number = parseInt each_address_component.long_name.replace /號$/, ''
               break
           if address
             break
 
-      # street number
-      for each_address_component in address_components
-        the_types = each_address_component.types
-        for each_type in the_types
-          if each_type == 'street_number'
-            street_number = parseInt each_address_component.long_name.replace /號$/, ''
-            break
-        if address
-          break
+        #landmark
+        if not landmark
+          for each_address_component in address_components
+            the_types = each_address_component.types
+            for each_type in the_types
+              if each_type in _LANDMARK_TYPE_LIST
+                landmark = each_address_component.long_name
+                break
+            if landmark
+              break
 
-      console.log 'postal_code:', postal_code, 'county:', county, 'town:', town, 'address:' address, 'street_number:', street_number
+      console.log 'postal_code:', postal_code, 'county:', county, 'town:', town, 'address:' address, 'street_number:', street_number, 'landmark:', landmark
 
-      {county, town, address, street_number}
+      {county, town, address, street_number, landmark}
 
     _query_error = (data, status, headers, config) ->
       latlon = config.latlng
