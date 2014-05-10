@@ -90,7 +90,7 @@ SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData geoData ]> 
       if each_geo.landmark
         landmark_map[eacho_geo.address] ++= [each_geo.landmark]
 
-    console.log 'address_map:', address_map
+    console.log 'street_number_map:', street_number_map, 'landmark_map:', landmark_map
 
     parsed_address_list = address_list |> map (each_address) -> _parse_each_geo_address each_address, street_number_map, landmark_map
 
@@ -101,7 +101,7 @@ SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData geoData ]> 
     join ' ~ ', parsed_address_list
 
   _parse_each_geo_address = (address, street_number_map, landmark_map) ->
-    street_number_list = address_map[address]
+    street_number_list = street_number_map[address]
     console.log 'address:', address, 'street_number_list:', street_number_list
 
     if address is void
