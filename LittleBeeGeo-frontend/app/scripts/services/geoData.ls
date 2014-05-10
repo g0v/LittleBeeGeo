@@ -788,11 +788,11 @@ angular.module 'LittleBeeGeoFrontend'
 
       latlon = config.params.latlng
 
-      {county, town, address} = _parse_data data
+      {county, town, address, street_number} = _parse_data data
 
-      console.log 'setup data: latlon:', latlon, 'county:', county, 'town:', town, 'address:', address
+      console.log 'setup data: latlon:', latlon, 'county:', county, 'town:', town, 'address:', address, 'street_number:', street_number
 
-      cached_data.data[latlon] = {county, town, address}
+      cached_data.data[latlon] = {county, town, address, street_number}
 
     _parse_priority = ->
       the_types = it.types
@@ -869,15 +869,35 @@ angular.module 'LittleBeeGeoFrontend'
       for each_address_component in address_components
         the_types = each_address_component.types
         for each_type in the_types
-          if each_type == 'route' or each_type == 'premise'
+          if each_type == 'route'
             address = each_address_component.long_name
             break
         if address
           break
 
-      console.log 'postal_code:', postal_code, 'county:', county, 'town:', town, 'address:' address
+      if not address
+        for each_address_component in address_components
+          the_types = each_address_component.types
+          for each_type in the_types
+            if each_type == 'bus_station' or each_type == 'establishment'
+              address = each_address_component.long_name
+              break
+          if address
+            break
 
-      {county, town, address}
+      # street number
+      for each_address_component in address_components
+        the_types = each_address_component.types
+        for each_type in the_types
+          if each_type == 'street_number'
+            street_number = parseInt each_address_component.long_name.replace /號$/, ''
+            break
+        if address
+          break
+
+      console.log 'postal_code:', postal_code, 'county:', county, 'town:', town, 'address:' address, 'street_number:', street_number
+
+      {county, town, address, street_number}
 
     _query_error = (data, status, headers, config) ->
       latlon = config.latlng

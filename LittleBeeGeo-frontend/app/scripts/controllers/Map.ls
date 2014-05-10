@@ -1,6 +1,6 @@
 'use strict'
 
-{map, fold, fold1, mean, join} = require 'prelude-ls'
+{map, fold, fold1, mean, join, minimum, maximum} = require 'prelude-ls'
 
 LEGENDS = <[ ]>
 
@@ -54,26 +54,72 @@ SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData geoData ]> 
     if not geo or geo.length == 0
       return {county: '', town: '', address: ''}
 
+    geo_info_list = geo |> map (each_geo) -> geoData.getGeoInfo each_geo.latLng
+
     county = ''
     town = ''
-    address_list = []
-    pre_address = ''
-    for each_geo in geo
-      geo_info = geoData.getGeoInfo each_geo.latLng
+    for geo_info in geo_info_list
       if county == '' and geo_info.county != ''
         county = geo_info.county
 
       if town == '' and geo_info.town != ''
         town = geo_info.town
 
-      if geo_info.address
-        if pre_address != geo_info.address
-          address_list ++= [geo_info.address]
-        pre_address = geo_info.address
-
-    address = join '~', address_list
+    address = _parse_geo_address geo_info_list
 
     {county, town, address}
+
+  _parse_geo_address = (geo) ->
+    address_list = []
+    address_map = {}
+    for each_geo in geo
+      console.log 'each_geo:', each_geo
+      if not each_geo.address
+        continue
+
+      if each_geo.address not in address_list
+        console.log 'address not in address_list: address:', each_geo.address
+        address_list ++= [each_geo.address]
+        address_map[each_geo.address] = []
+
+      if each_geo.street_number is void
+        continue
+
+      address_map[each_geo.address] ++= [each_geo.street_number]
+
+    console.log 'address_map:', address_map
+
+    parsed_address_list = address_list |> map (each_address) -> _parse_each_geo_address each_address, address_map
+
+    console.log 'parsed_address_list:', parsed_address_list
+
+    parsed_address_list = [address for address in parsed_address_list when address]
+
+    join ' ~ ', parsed_address_list
+
+  _parse_each_geo_address = (address, address_map) ->
+    street_number_list = address_map[address]
+    console.log 'address:', address, 'street_number_list:', street_number_list
+
+    if address is void
+      return ''
+
+    if street_number_list is void or not street_number_list.length
+      return address
+
+    min_street_number = minimum street_number_list
+
+    console.log 'min_street_number:', min_street_number
+
+    max_street_number = maximum street_number_list
+
+    street_number_text = min_street_number + '號'
+    street_number_text += if min_street_number == max_street_number then '' else '~' + max_street_number + '號'
+    address_text = address + street_number_text
+
+    console.log 'address_text:', address_text
+
+    address_text
 
   geo = items.geo
 
@@ -487,12 +533,14 @@ angular.module 'LittleBeeGeoFrontend'
 
       deliver_datetime = new Date(value.deliver_time * 1000);
       the_ad_versions = join ', ', value.ad_versions
+      the_number = value.count
 
       result = '<div>' + \
         '<p>' + _parse_content_join_str([value.county, value.town]) + '</p>' + \
         '<p>' + the_address + '</p>' + \
         '<p>' + the_user_name + '</p>' + \
         '<p>' + deliver_datetime.toLocaleString! + '</p>' + \
+        '<p>' + the_number + '份</p>' + \
         '<p>' + the_ad_versions + '</p>'
 
       #if value.deliver_status:
@@ -505,5 +553,3 @@ angular.module 'LittleBeeGeoFrontend'
     _parse_content_join_str = (the_list) ->
       the_list = [column for column in the_list when column]
       return join ' / ' the_list
-
-      
