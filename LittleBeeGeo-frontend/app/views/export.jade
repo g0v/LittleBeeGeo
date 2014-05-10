@@ -1,0 +1,10 @@
+div(ng-controller='CsvUploadCtrl')
+  div.drop-box(ng-show="dropSupported", ng-file-drop="onFileSelect($files);", ng-file-drop-available="dropSupported=true") 拉檔案到這裡
+  div(ng-show="selectedFiles != null")
+    div.sel-file(ng-repeat="f in selectedFiles") {{($index + 1) + '.'}}
+      img(ng-show="dataUrls[$index]", ng-src="{{dataUrls[$index]}}")
+      button.poster_btn(ng-click="start($index)", ng-show="progress[$index] < 0") Start
+      span.progress(ng-show="progress[$index] >= 0")
+        div(style="width:{{progress[$index]}}%") {{progress[$index]}}%
+      button.poster_btn(ng-click="abort($index)", ng-show="hasUploader($index) && progress[$index] < 100") Abort
+      {{f.name}} - size: {{f.size}}B - type: {{f.type}} - 結果: {{upload_result}}
