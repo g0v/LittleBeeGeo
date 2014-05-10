@@ -829,7 +829,7 @@ angular.module 'LittleBeeGeoFrontend'
       landmark = ''
       
       for each_result in results
-        if postal_code and county and town and address and establishment
+        if postal_code and county and town and address and landmark
           break
 
         address_components = each_result.address_components
