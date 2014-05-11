@@ -6,7 +6,7 @@ import random
 import math
 import base64
 import time
-import ujson as json
+import simplejson as json
 import pytz
 import hashlib
 from pytz import timezone
@@ -100,10 +100,10 @@ def db_insert_if_not_exist(cf_name, key, val):
     return result
 
 
-def json_dumps(json_struct, default_val=''):
+def json_dumps(json_struct, default_val='', sort_keys=False):
     result = default_val
     try:
-        result = json.dumps(json_struct)
+        result = json.dumps(json_struct, sort_keys=sort_keys)
     except:
         cfg.logger.exception('unable to json_dumps: json_struct: %s', json_struct)
 
