@@ -70,11 +70,16 @@ def _parse_csv(data):
 
     df = pd.DataFrame(parsed_dict_list)
 
-    df = df[['csv_key', 'deliver_time', 'deliver_date', 'user_name', 'address', 'google_address', 'ad_versions', 'count']]
+    df = df[['csv_key', 'deliver_time', 'deliver_date', 'user_name', 'address', 'google_address', 'versions', 'count']]
 
     results = util.df_to_dict_list(df)
 
-    return (funnel_dict['error_code'], funnel_dict['error_msg'], 0, results)
+    for each_result in results:
+        util.db_update('bee_csv', {'csv_key': each_result.get('csv_key', '')}, each_result)
+        for each_version in each_result.get('versions', ''):
+            util.db_update('bee_csv_versions', {'version': each_version}, {"version": each_version})
+
+    return (funnel_dict['error_code'], funnel_dict['error_msg'], len(results), results)
 
 
 def _parse_dict_row(row, funnel_dict):
@@ -678,6 +683,8 @@ def _parse_versions(x, funnel_dict):
     the_versions = the_versions.strip()
 
     versions = re.split(ur'[、+]', the_versions, flags=re.UNICODE)
+
+    versions = [version for version in versions]
 
     return versions
 

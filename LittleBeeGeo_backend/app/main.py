@@ -23,7 +23,6 @@ from app.http_handlers.p_img_handler import p_img_handler
 from app.http_handlers.p_img_info_handler import p_img_info_handler
 from app.http_handlers.g_ad_data_handler import g_ad_data_handler
 from app.http_handlers.g_thumbnail_handler import g_thumbnail_handler
-from app.http_handlers.p_csv_handler import p_csv_handler
 
 app = Bottle()
 
@@ -69,13 +68,6 @@ def g_static4(filepath):
 def p_img2(idx):
     _log_entry()
     return _process_result({"success": True})
-
-
-@app.post('/post/csv')
-def p_csv():
-    _log_entry()
-    data = _process_body_request()
-    return _process_result(p_csv_handler(data, request.content_type))
 
 
 @app.post('/post/img/<idx>')
