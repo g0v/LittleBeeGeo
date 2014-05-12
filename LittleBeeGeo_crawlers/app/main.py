@@ -32,15 +32,15 @@ def p_csv():
 @app.get('/get/google_address')
 def g_google_address():
     _log_entry()
-
-    return _process_result(get_google_address_handler())
+    params = _process_params()
+    return _process_result(get_google_address_handler(params))
 
 
 @app.get('/get/versions')
 def g_versions():
     _log_entry()
-
-    return _parse_result(get_versions_handler())
+    params = _process_params()
+    return _process_result(get_versions_handler(params))
 
 
 def _process_body_request():
@@ -57,6 +57,10 @@ def _process_result(the_obj):
     #cfg.logger.debug('the_obj: %s', the_obj)
     response.content_type = 'application/json'
     return util.json_dumps(the_obj)
+
+
+def _process_params():
+    return dict(request.params)
 
 
 def _log_entry(data=''):

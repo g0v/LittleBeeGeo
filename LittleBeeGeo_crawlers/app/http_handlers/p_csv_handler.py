@@ -56,6 +56,7 @@ def _parse_csv(data):
     df = df[is_csv_key_not_in_db]
 
     df['address'] = df.apply(lambda x: _parse_address(dict(x), funnel_dict), axis=1)
+    df['county_and_town'] = df.apply(lambda x: _parse_county_and_town(dict(x), funnel_dict), axis=1)
     df['google_address'] = df.apply(lambda x: _parse_google_address(dict(x), funnel_dict), axis=1)
     df['deliver_time'] = df.apply(lambda x: _parse_deliver_time(dict(x), funnel_dict), axis=1)
     df['deliver_date'] = df.apply(lambda x: _parse_deliver_date(dict(x), funnel_dict), axis=1)
@@ -63,6 +64,7 @@ def _parse_csv(data):
     df['count'] = df.apply(lambda x: _parse_count(dict(x), funnel_dict), axis=1)
     df['deliver_status'] = df.apply(lambda x: _parse_deliver_status(dict(x), funnel_dict), axis=1)
     df['memo'] = df.apply(lambda x: _parse_memo(dict(x), funnel_dict), axis=1)
+    df['version_text'] = df.apply(lambda x: _parse_version_text(dict(x), funnel_dict), axis=1)
     df['versions'] = df.apply(lambda x: _parse_versions(dict(x), funnel_dict), axis=1)
 
     cfg.logger.debug('df_len: %s', len(df))
@@ -70,14 +72,17 @@ def _parse_csv(data):
 
     df = pd.DataFrame(parsed_dict_list)
 
-    df = df[['csv_key', 'deliver_time', 'deliver_date', 'user_name', 'address', 'google_address', 'versions', 'count']]
+    df = df[['csv_key', 'deliver_time', 'deliver_date', 'user_name', 'address', 'county_and_town', 'google_address', 'versions', 'version_text', 'count']]
 
     results = util.df_to_dict_list(df)
 
     for each_result in results:
-        util.db_update('bee_csv', {'csv_key': each_result.get('csv_key', '')}, each_result)
-        for each_version in each_result.get('versions', ''):
-            util.db_update('bee_csv_versions', {'version': each_version}, {"version": each_version})
+        csv_key = each_result.get('csv_key', '')
+        versions = each_result.get('versions', [])
+        version_text = each_result.get('version_text', [])
+        util.db_update('bee_csv', {'csv_key': csv_key}, each_result)
+        for each_version in versions:
+            util.db_update('bee_csv_versions', {'version': each_version}, {csv_key: version_text})
 
     return (funnel_dict['error_code'], funnel_dict['error_msg'], len(results), results)
 
@@ -409,6 +414,13 @@ def _parse_address(x, funnel_dict):
     return the_address
 
 
+def _parse_county_and_town(x, funnel_dict):
+    #cfg.logger.debug('x: %s', util.json_dumps(x))
+    x = _unicode_dict(x)
+    county_and_town = x.get(u'縣市區', '')
+    return county_and_town
+
+
 def _parse_google_address(x, funnel_dict):
     x = _unicode_dict(x)
     the_address = x.get(u'路名（區域）', '')
@@ -497,7 +509,7 @@ def _sanitize_address(address):
     address = re.sub(ur'(義式手工冰淇淋店)', u'', address, flags=re.UNICODE)
     address = re.sub(ur'機車店', u'', address, flags=re.UNICODE)
     address = re.sub(ur'內及周邊', u'', address, flags=re.UNICODE)
-    address = re.sub(ur'台灣圖書館門口有發給路人', u'國立台灣圖書館', address, flags=re.UNICODE)
+    address = re.sub(ur'台灣圖書館門口有發給路人一些', u'國立台灣圖書館', address, flags=re.UNICODE)
     address = re.sub(ur'旁的住宅信箱', u'', address, flags=re.UNICODE)
     address = re.sub(ur'長庚科大班級信箱', u'長庚科技大學', address, flags=re.UNICODE)
     address = re.sub(ur'新世紀誠品文宣櫃和明儀倉庫書局文宣櫃', u'新世紀誠品、明儀倉庫書局', address, flags=re.UNICODE)
@@ -675,6 +687,13 @@ def _formalize_other(the_other, idx, the_address_list):
 
 def _formalize_fill_type(the_str):
     return _fill_type_map.get(the_str, '')
+
+
+def _parse_version_text(x, funnel_dict):
+    x = _unicode_dict(x)
+    version_text = x.get(u'檔案版本', '')
+
+    return version_text
 
 
 def _parse_versions(x, funnel_dict):
