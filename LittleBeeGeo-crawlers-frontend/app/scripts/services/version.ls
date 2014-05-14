@@ -1,5 +1,5 @@
 'use strict'
 
-angular.module 'LittleBeeGeoCrawler'
+angular.module 'LittleBeeGeoCrawlerApp'
   .factory 'version', <[]> ++ ->
     0.1

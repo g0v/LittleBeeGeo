@@ -18,3 +18,12 @@ body {
   //@include box-shadow(inset 0 0px 15px rgba(0, 0, 0, .5));
 }
 
+.map-canvas { 
+  height: 500px
+}
+
+#map-legend {
+  background: white;
+  padding: 8px;
+  font-size: 14px;
+}

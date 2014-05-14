@@ -1,10 +1,10 @@
 'use strict'
 
-angular.module 'LittleBeeGeoCrawler'
+angular.module 'LittleBeeGeoCrawlerApp'
   .controller 'AppCtrl', <[ $scope $location $resource $rootScope version ]> ++ ($scope, $location, $resource, $rootScope, version) ->
     $scope <<< {version}
 
-    $scope.$watch '$location.path()' (active-nav-id or '/') ->
+    $scope.$watch (-> $location.path!), (active-nav-id, orig-active-nav-id) ->
       $scope <<< {active-nav-id}
 
     $scope.getClass = (id) ->

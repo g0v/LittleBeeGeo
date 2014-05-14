@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'LittleBeeGeoCrawler'
+angular.module 'LittleBeeGeoCrawlerApp'
   .filter 'interpolate', <[version]> ++ (version) ->
     (text) ->
       String(text)replace /\%VERSION\%/mg version
