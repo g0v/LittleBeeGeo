@@ -1,0 +1,4 @@
+CONFIG = 
+  BACKEND_HOST: \localhost:6437
+
+window.LittleBeeGeo = {CONFIG}
