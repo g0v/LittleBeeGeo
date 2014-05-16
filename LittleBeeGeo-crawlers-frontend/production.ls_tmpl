@@ -1,5 +1,5 @@
 CONFIG = 
   BACKEND_HOST: \localhost:6438
-  N_ADDRESS: 5
+  N_ADDRESS: 1000
 
 window.LittleBeeGeoCrawler = {CONFIG}

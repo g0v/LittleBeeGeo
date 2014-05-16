@@ -47,6 +47,7 @@ angular.module 'LittleBeeGeoCrawlerApp'
       $scope.current_data = the_data
       console.log 'new current_idx:', new_val, 'the_data:', the_data
       $scope.address_text = the_data.county_and_town + ' ' + the_data.address
+      $scope.error_msg = ''
       $scope.is_process_geo_done = false
       googleAddress.getGeo the_data, $scope
 
@@ -57,14 +58,19 @@ angular.module 'LittleBeeGeoCrawlerApp'
       else
         if $scope.current_data and $scope.current_data.is_process_geo_done
           $scope.is_process_geo_done = true
+          if $scope.current_data.is_process_geo_error
+            $scope.error_msg = $scope.current_data.is_process_geo_error
+          _update_map $scope.current_data
 
     _update_map = (data) ->
       console.log 'CrawlAddress: _update_map: data:', data
-      data.geo = _parse_data_geojson data
-      if not data.geo
-        return 
 
       _remove_marker_from_googlemap $scope.report_marker
+
+      data.geo = _parse_data_geojson data
+
+      if not data.geo
+        return 
 
       $scope.report_marker = _add_marker_to_googlemap data.geo, COLOR_REPORT
 

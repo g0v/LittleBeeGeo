@@ -1,6 +1,7 @@
 div(ng-controller="CrawlAddressCtrl")
   div 
     p {{total_address ? (current_idx + 1) : 0}} / {{total_address}}
+    p(ng-show="error_msg") [ERROR] {{error_msg}}
   div.states
     button.btn.btn-pre(type=button, ng-click="onPreRecord()")
       div

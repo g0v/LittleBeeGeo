@@ -24,6 +24,7 @@ angular.module 'LittleBeeGeoCrawlerApp'
         if the_status != 'OK'
           console.log '[ERROR] googleAddress: unable to get google address: the_status:', the_status, 'the_data:', the_data
           my_data.is_process_geo_error = 'status: ' + the_status + 'query_data: ' + JSON.stringify the_data
+          my_data.is_process_geo_done = true
           my_scope.error_msg = my_data.is_process_geo_error
           return 
 
@@ -83,5 +84,6 @@ angular.module 'LittleBeeGeoCrawlerApp'
       url = 'https://maps.googleapis.com/maps/api/geocode/json'
       language = 'zh-tw'
       for address in google_address_list
+        address = address
         $http.get url, {method: \GET, params: {address, language}, my_data: data, my_scope: $scope}
           .success _get_success

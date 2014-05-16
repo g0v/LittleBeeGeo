@@ -2,6 +2,8 @@
 
 {CONFIG} = window.LittleBeeGeoCrawler
 
+{map} = require 'prelude-ls'
+
 cached_data = 
   data_timestamp: new Date!getTime!
   data: []
@@ -20,9 +22,15 @@ angular.module 'LittleBeeGeoCrawlerApp'
 
       _query_success = (data) ->
         console.log '_query_success: data:', data
-        cached_data.data = data.result
+        cached_data.data = data.result |> map _update_with_taiwan
+
         cached_data.data_timestamp = new Date!getTime!
         console.log 'cached_data:', cached_data
+
+      _update_with_taiwan = ->
+        it.county_and_town = '台灣' + it.county_and_town
+        it.google_address = ['台灣' + each_address for each_address in it.google_address]
+        it
 
       QueryData = $resource url
 
