@@ -18,6 +18,7 @@ from app import util
 from app.gevent_server import GeventServer
 from app.http_handlers.p_csv_handler import p_csv_handler
 from app.http_handlers.get_google_address_handler import get_google_address_handler
+from app.http_handlers.post_google_geo_handler import post_google_geo_handler
 from app.http_handlers.get_versions_handler import get_versions_handler
 
 app = Bottle()
@@ -36,11 +37,29 @@ def g_google_address():
     return _process_result(get_google_address_handler(params))
 
 
+@app.route('/post/google_geo', method=["OPTIONS"])
+def p_google_geo():
+    _log_entry()
+    return _process_result({"success": True})
+
+
+@app.post('/post/google_geo')
+def p_google_geo():
+    _log_entry()
+    params = _process_json_params()
+    return _process_result(post_google_geo_handler(params))
+
+
 @app.get('/get/versions')
 def g_versions():
     _log_entry()
     params = _process_params()
     return _process_result(get_versions_handler(params))
+
+
+def _process_json_params():
+    the_content = _process_body_request()
+    return util.json_loads(the_content)
 
 
 def _process_body_request():
