@@ -16,7 +16,7 @@ angular.module 'LittleBeeGeoCrawlerApp'
 
       console.log 'to post: url:', url, 'csv_key:', csv_key, 'county:', county, 'town:', town, 'geo:', geo
 
-      $http.post url, {csv_key, county, town, geo}, {method: \POST}
+      $http.post url, {csv_key, county, town, geo: [geo]}, {method: \POST}
         .success _post_success
 
     getGeo: (data, $scope) ->
