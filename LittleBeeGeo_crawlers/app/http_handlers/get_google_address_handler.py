@@ -12,7 +12,7 @@ from app import util
 
 def get_google_address_handler(params):
     n_db_result = util._int(params.get('n', 1))
-    db_result = util.db_find_it('bee_csv', {'is_processed_address': {'$exists': False}}, {'_id': False, 'csv_key': True, 'google_address': True, 'address': True, 'county_and_town': True})
+    db_result = util.db_find_it('bee_csv', {'is_processed_address': {'$ne': True}}, {'_id': False, 'csv_key': True, 'google_address': True, 'address': True, 'county_and_town': True})
 
     db_result_total = db_result.count()
 
