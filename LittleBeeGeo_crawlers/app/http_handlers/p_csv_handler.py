@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from app.constants import S_OK, S_ERR
+from app.constants import *
 import random
 import math
 import base64
@@ -23,7 +23,11 @@ _fill_type_map = {
     u'號': 'number',
 }
 
-    
+_county_and_town_map = {
+    u'新北土城': u'新北市土城區',
+    u'新北中和': u'新北市中和區',
+}
+
 def p_csv_handler(data, content_type):
     if content_type != 'text/csv':
         return {"success": False, "error_msg": "content_type"}
@@ -116,7 +120,7 @@ def _parse_town(x, funnel_dict):
 
     the_str_purify = the_str_match.group(2)
 
-    #cfg.logger.debug('the_str: (%s, %s) the_str_purify: (%s: %s)', the_str, the_str.__class__.__name__, the_str_purify, the_str_purify.__class__.__name__)
+    cfg.logger.debug('the_str: (%s, %s) the_str_purify: (%s: %s)', the_str, the_str.__class__.__name__, the_str_purify, the_str_purify.__class__.__name__)
 
     return the_str_purify
 
@@ -418,7 +422,9 @@ def _parse_county_and_town(x, funnel_dict):
     #cfg.logger.debug('x: %s', util.json_dumps(x))
     x = _unicode_dict(x)
     county_and_town = x.get(u'縣市區', '')
-    return county_and_town
+    new_county_and_town = _county_and_town_map.get(county_and_town, county_and_town)
+    cfg.logger.debug('origin_county_and_town: %s new_county_and_town: %s', county_and_town, new_county_and_town)
+    return new_county_and_town
 
 
 def _parse_google_address(x, funnel_dict):
