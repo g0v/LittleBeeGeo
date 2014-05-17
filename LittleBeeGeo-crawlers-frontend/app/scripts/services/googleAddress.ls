@@ -1,8 +1,24 @@
 'use strict'
 
+{CONFIG} = window.LittleBeeGeoCrawler
+
 {keys} = require 'prelude-ls'
 angular.module 'LittleBeeGeoCrawlerApp'
   .factory 'googleAddress', <[ $http ]> ++ ($http)-> do
+    updateGeo: (data) ->
+      {csv_key, geo, county, town} = data
+      console.log 'csv_key:', csv_key, 'county:', county, 'town:', town, 'geo:', geo
+
+      url = 'http://' + CONFIG.BACKEND_HOST + '/post/google_geo'
+
+      _post_success = (the_data, status, headers, config) ->
+        console.log 'the_data:', the_data, 'status:', status, 'headers:', headers, 'config:', config
+
+      console.log 'to post: url:', url, 'csv_key:', csv_key, 'county:', county, 'town:', town, 'geo:', geo
+
+      $http.post url, {csv_key, county, town, geo}, {method: \POST}
+        .success _post_success
+
     getGeo: (data, $scope) ->
       if data.is_processed_geo
         return
@@ -67,19 +83,19 @@ angular.module 'LittleBeeGeoCrawlerApp'
 
       _parse_geo_county = (address_components) ->
         for each_component in address_components
-          short_name = each_component.short_name
+          the_name = each_component.long_name
           the_types = each_component.types
           for each_type in the_types
             if each_type == 'administrative_area_level_2'
-              return short_name
+              return the_name
 
       _parse_geo_town = (address_components) ->
         for each_component in address_components
-          short_name = each_component.short_name
+          the_name = each_component.long_name
           the_types = each_component.types
           for each_type in the_types
             if each_type == 'locality'
-              return short_name
+              return the_name
 
       url = 'https://maps.googleapis.com/maps/api/geocode/json'
       language = 'zh-tw'

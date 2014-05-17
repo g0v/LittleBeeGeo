@@ -206,15 +206,16 @@ angular.module 'LittleBeeGeoCrawlerApp'
 
     $scope.onMapIdle = -> 
 
-    $scope.onPreRecord = ->
-      if not $scope.total_address
-        return
+    $scope.onBadRecord = ->
+      _next_record!
 
-      $scope.current_idx -= 1
-      if $scope.current_idx < 0
-        $scope.current_idx = $scope.total_address - 1
+    $scope.onGoodRecord = ->
+      console.log 'scope.current_data:', $scope.current_data
+      googleAddress.updateGeo $scope.current_data
+      _next_record!
 
-    $scope.onNextRecord = ->
+    _next_record = ->
+      console.log '_next_record: start'
       if not $scope.total_address
         return
 

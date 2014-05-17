@@ -3,12 +3,12 @@ div(ng-controller="CrawlAddressCtrl")
     p {{total_address ? (current_idx + 1) : 0}} / {{total_address}}
     p(ng-show="error_msg") [ERROR] {{error_msg}}
   div.states
-    button.btn.btn-pre(type=button, ng-click="onPreRecord()")
+    button.btn.btn-pre(type=button, ng-click="onBadRecord()")
       div
-        p <
-    button.btn.btn-next(type=button, ng-click="onNextRecord()")
+        p bad
+    button.btn.btn-next(type=button, ng-click="onGoodRecord()")
       div
-        p >
+        p good
     div
       p {{address_text}}
   div.map-canvas(ui-map="myMap", ui-options="mapOptions", ui-event="{'map-idle': 'onMapIdle()'}")
