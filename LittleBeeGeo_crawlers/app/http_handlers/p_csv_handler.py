@@ -468,7 +468,7 @@ def _parse_google_address(x, funnel_dict):
 
 
 def _get_google_info_with_error_code_from_address(parsed_address, x):
-    county_and_town = x.get(u'縣市區', '')
+    county_and_town = x.get(u'county_and_town', '')
     the_road = '' if not parsed_address.get('road', '') else parsed_address.get('road', '')
     the_section = '' if not parsed_address.get('section', '') else parsed_address.get('section', '') + u'段'
     the_lane = '' if not parsed_address.get('lane', '') else parsed_address.get('lane', '') + u'巷'
