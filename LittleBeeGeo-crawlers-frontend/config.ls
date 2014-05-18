@@ -54,3 +54,6 @@ exports.config =
   # minify: true
   server:
     path: 'server/server.ls'
+  plugins:
+    autoReload:
+      port: [10015, 10016, 10017]

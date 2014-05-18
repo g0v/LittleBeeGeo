@@ -709,7 +709,7 @@ def _parse_versions(x, funnel_dict):
 
     versions = re.split(ur'[、+]', the_versions, flags=re.UNICODE)
 
-    versions = [version for version in versions]
+    versions = [version.lower() for version in versions]
 
     return versions
 

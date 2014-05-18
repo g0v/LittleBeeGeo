@@ -32,7 +32,7 @@ SubmitCtrl = <[ $scope $modalInstance items TWCounties TWTown adData geoData ]> 
     console.log 'formatAd: data:', data
     '<table><tr><td class="poster-img"><img class="flag" src="http://' + BACKEND_HOST + '/get/thumbnail/' + data.element[0].id + '"/></td><td>' + data.text + '</td><tr>'
 
-  $scope.Ads = [{"name": ""}]
+  $scope.Ads = [{"name": "", "the_type": ""}]
   $scope.$watch (-> adData.getDataTimestamp!), ->
     the_data = adData.getData!
 

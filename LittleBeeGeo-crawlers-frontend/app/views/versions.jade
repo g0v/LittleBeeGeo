@@ -1,0 +1,18 @@
+div(ng-controller="CrawlVersionCtrl")
+  div 
+    p {{total_versions ? (current_idx + 1) : 0}} / {{total_versions}}
+    p {{version_text}}
+    button.btn.btn-pre(type=button, ng-click="onPreRecord()")
+      div
+        p <
+    button.btn.btn-next(type=button, ng-click="onGoodRecord()")
+      div
+        p good
+    button.btn.btn-next(type=button, ng-click="onNextRecord()")
+      div
+        p >
+
+  div.form-group
+    label 文宣:
+    select.version-select(ui-select2='{formatResult: formatAd, formatSelect: formatAd, placeholder: "我這次發了哪些文宣?"}', ng-model='ad_versions', multiple)
+      option(ng-repeat='each_ad in Ads', id="{{each_ad.the_id}}", value="{{each_ad.name}}") {{each_ad.name}}
