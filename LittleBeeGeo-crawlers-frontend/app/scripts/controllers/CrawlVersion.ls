@@ -33,7 +33,7 @@ angular.module 'LittleBeeGeoCrawlerApp'
       the_data = cached_result[new_val]
       $scope.current_data = the_data
       the_datetime = new Date the_data.deliver_time
-      $scope.version_text = the_data.version_text + '(' + the_datetime.toLocalString! + ')'
+      $scope.version_text = the_data.version_text + '(' + the_datetime.toLocaleString! + ')'
       if $scope.current_data.ad_versions is not void
         $scope.ad_versions = $scope.current_data.ad_versions
       else
