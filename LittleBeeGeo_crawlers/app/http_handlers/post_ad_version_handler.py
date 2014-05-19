@@ -21,7 +21,7 @@ def post_ad_version_handler(params):
 
     util.db_update('bee_csv', {'csv_key': csv_key}, {'ad_versions': ad_versions, "is_processed_ad_version": True})
 
-    db_result = util.db_find_one('bee_csv', {"csv_key": csv_key}, {"_id": False, "town": True, "count": True, "deliver_time": True, "deliver_date": True, "save_time": True, "geo": True, "county": True, "address": True, "user_name": True, "is_processed_ad_version": True, "is_processed_address": True, "csv_key": True})
+    db_result = util.db_find_one('bee_csv', {"csv_key": csv_key}, {"_id": False, "town": True, "count": True, "deliver_time": True, "deliver_date": True, "save_time": True, "geo": True, "county": True, "address": True, "user_name": True, "is_processed_ad_version": True, "is_processed_address": True, "csv_key": True, "ad_versions": True, "version_text": True})
 
     the_id = str(db_result.get('save_time', 0)) + "_" + util.uuid()
 
