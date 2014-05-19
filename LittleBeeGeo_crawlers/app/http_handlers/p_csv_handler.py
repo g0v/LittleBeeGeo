@@ -63,6 +63,7 @@ def _parse_csv(data):
     df['county_and_town'] = df.apply(lambda x: _parse_county_and_town(dict(x), funnel_dict), axis=1)
     df['google_address'] = df.apply(lambda x: _parse_google_address(dict(x), funnel_dict), axis=1)
     df['deliver_time'] = df.apply(lambda x: _parse_deliver_time(dict(x), funnel_dict), axis=1)
+    df['save_time'] = df.apply(lambda x: _parse_save_time(dict(x), funnel_dict), axis=1)
     df['deliver_date'] = df.apply(lambda x: _parse_deliver_date(dict(x), funnel_dict), axis=1)
     df['user_name'] = df.apply(lambda x: _parse_user_name(dict(x), funnel_dict), axis=1)
     df['count'] = df.apply(lambda x: _parse_count(dict(x), funnel_dict), axis=1)
@@ -76,7 +77,7 @@ def _parse_csv(data):
 
     df = pd.DataFrame(parsed_dict_list)
 
-    df = df[['csv_key', 'deliver_time', 'deliver_date', 'user_name', 'address', 'county_and_town', 'google_address', 'versions', 'version_text', 'count']]
+    df = df[['csv_key', 'deliver_time', 'deliver_date', 'user_name', 'address', 'county_and_town', 'google_address', 'versions', 'version_text', 'count', 'save_time']]
 
     results = util.df_to_dict_list(df)
 
@@ -186,10 +187,35 @@ def _parse_memo(x, funnel_dict):
     return x.get(u'備註', '')
 
 
-def _parse_deliver_time(x, funnel_dict):
+def _parse_save_time(x, funnel_dict):
     x = _unicode_dict(x)
-    the_date_time = x.get(u'派送時間', '')
-    return 0
+    the_str = x.get(u'時間戳記', '')
+    #cfg.logger.debug('the_date_time: %s', the_str)
+
+    the_list = the_str.split(' ')
+    the_date = the_list[0]
+    the_time = the_list[2]
+    am_pm = the_list[1]
+
+    the_time_list = the_time.split(':')
+    the_hr = util._int(the_time_list[0])
+
+    if the_hr == 12 and am_pm == u'上午': 
+        the_time_list[0] = '0'
+        the_time = ':'.join(the_time_list)
+
+    if am_pm == u'下午' and the_hr != 12:
+        the_time_list[0] = str(util._int(the_time[0]) + 12)
+        the_time = ':'.join(the_time_list)
+
+    cfg.logger.debug('the_date: %s the_time: %s', the_date, the_time)
+
+    the_datetime_str = the_date + ' ' + the_time
+
+    the_datetime = datetime.strptime(the_datetime_str, '%Y/%m/%d %H:%M:%S')
+    the_timestamp = util.datetime_to_timestamp(the_datetime)
+
+    return the_timestamp
 
 
 def _parse_deliver_time(x, funnel_dict):

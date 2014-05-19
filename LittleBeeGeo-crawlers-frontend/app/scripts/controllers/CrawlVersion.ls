@@ -33,6 +33,10 @@ angular.module 'LittleBeeGeoCrawlerApp'
       the_data = cached_result[new_val]
       $scope.current_data = the_data
       $scope.version_text = the_data.version_text
+      if $scope.current_data.ad_versions is not void
+        $scope.ad_versions = $scope.current_data.ad_versions
+      else
+        $scope.ad_versions = []
 
     $scope.ad_versions = []
     $scope.$watch (-> $scope.ad_versions.length), ->
@@ -43,9 +47,16 @@ angular.module 'LittleBeeGeoCrawlerApp'
       '<table><tr><td class="poster-img"><img class="flag" src="http://' + CONFIG.BEE_BACKEND_HOST + '/get/thumbnail/' + data.element[0].id + '"/></td><td>' + data.text + '</td><tr>'
 
     $scope.onPreRecord = ->
+      $scope.current_data.ad_versions = $scope.ad_versions
       _pre_record!
 
+    $scope.onGoodRecord = ->
+      $scope.current_data.ad_versions = $scope.ad_versions
+      versionInfo.updateVersion $scope.current_data
+      _next_record!
+
     $scope.onNextRecord = ->
+      $scope.current_data.ad_versions = $scope.ad_versions
       _next_record!
 
     _pre_record = ->

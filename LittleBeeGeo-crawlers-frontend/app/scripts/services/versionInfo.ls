@@ -9,7 +9,7 @@ cached_data =
 is_first = true
 
 angular.module 'LittleBeeGeoCrawlerApp'
-  .factory 'versionInfo', <[ $resource ]> ++ ($resource ) -> do
+  .factory 'versionInfo', <[ $resource $http ]> ++ ($resource, $http) -> do
     getData: ->
       if not is_first
         return cached_data.data
@@ -35,3 +35,17 @@ angular.module 'LittleBeeGeoCrawlerApp'
 
     getDataTimestamp: ->
       cached_data.data
+
+    upadteVersion: (data) ->
+      csv_key = data.csv_key
+      ad_versions = data.ad_versions
+
+      console.log 'csv_key:', csv_key, 'ad_versions': ad_versions
+
+      url = 'http://' + CONFIG.BACKEND_HOST + '/post/ad_version'
+
+      _post_success = (the_data, status, headers, config) ->
+        console.log 'the_data:', the_data, 'status:', status, 'headers:', headers, 'config:', config
+
+      $http.post url, {csv_key, ad_versions}
+        .success _post_success

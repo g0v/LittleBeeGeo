@@ -2,10 +2,10 @@
 
 import logging
 import unittest
-from app.http_handlers import p_csv_handler
+from app.http_handlers import post_ad_version_handler
 
-class TestPCsvHandler(unittest.TestCase):
-    '''unit tests for p_csv_handler'''
+class TestPostAdVersionHandler(unittest.TestCase):
+    '''unit tests for post_ad_version_handler'''
 
     def setUp(self):
         '''setup for all the tests'''
@@ -16,7 +16,7 @@ class TestPCsvHandler(unittest.TestCase):
         '''teardown for all the tests'''
         logging.info("teardown")
 
-    def test_p_csv_handler_true(self):
+    def test_post_ad_version_handler_true(self):
         '''True should not assert.'''
         assert True
 
