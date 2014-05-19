@@ -36,7 +36,7 @@ angular.module 'LittleBeeGeoCrawlerApp'
     getDataTimestamp: ->
       cached_data.data
 
-    upadteVersion: (data) ->
+    updateVersion: (data) ->
       csv_key = data.csv_key
       ad_versions = data.ad_versions
 

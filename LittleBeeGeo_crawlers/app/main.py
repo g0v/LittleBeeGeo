@@ -40,7 +40,7 @@ def g_google_address():
 
 
 @app.route('/post/google_geo', method=["OPTIONS"])
-def p_google_geo():
+def op_google_geo():
     _log_entry()
     return _process_result({"success": True})
 
@@ -50,6 +50,12 @@ def p_google_geo():
     _log_entry()
     params = _process_json_params()
     return _process_result(post_google_geo_handler(params))
+
+
+@app.route('/post/ad_version', method=["OPTIONS"])
+def op_ad_version():
+    _log_entry()
+    return _process_result({"success": True})
 
 
 @app.post('/post/ad_version')
