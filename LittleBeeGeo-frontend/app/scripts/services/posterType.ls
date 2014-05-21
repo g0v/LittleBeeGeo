@@ -12,6 +12,7 @@ cached_data =
     * name: \監督條例相關
     * name: \公民憲政會議
     * name: \核四
+    * name: \公投
     * name: \自由經濟示範區
     * name: \服貿
     * name: \其他
