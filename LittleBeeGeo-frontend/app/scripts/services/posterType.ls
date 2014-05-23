@@ -2,6 +2,7 @@
 
 cached_data = 
   data: [
+    * name: \貨貿
     * name: \服貿x電信
     * name: \服貿x醫療
     * name: \服貿x房價
