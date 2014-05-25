@@ -57,7 +57,7 @@ def _parse_csv(data):
     db_csv_keys = [each_key for each_key in db_csv_keys if each_key]
     #is_csv_key_not_in_db = df['csv_key'].isin(db_csv_keys) == False
 
-    df = df[is_csv_key_not_in_db]
+    #df = df[is_csv_key_not_in_db]
 
     df['address'] = df.apply(lambda x: _parse_address(dict(x), funnel_dict), axis=1)
     df['county_and_town'] = df.apply(lambda x: _parse_county_and_town(dict(x), funnel_dict), axis=1)
