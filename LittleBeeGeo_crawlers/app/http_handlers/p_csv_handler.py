@@ -77,7 +77,7 @@ def _parse_csv(data):
 
     df = pd.DataFrame(parsed_dict_list)
 
-    df = df[['csv_key', 'deliver_time', 'deliver_date', 'user_name', 'address', 'county_and_town', 'google_address', 'versions', 'version_text', 'count', 'save_time']]
+    df = df[['csv_key', 'deliver_time', 'deliver_date', 'user_name', 'address', 'county_and_town', 'google_address', 'versions', 'version_text', 'count', 'save_time', 'deliver_status', 'memo']]
 
     results = util.df_to_dict_list(df)
 

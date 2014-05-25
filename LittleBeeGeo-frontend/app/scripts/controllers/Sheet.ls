@@ -27,9 +27,14 @@ angular.module 'LittleBeeGeoFrontend'
       enablePaging: true
       #pageSizes: [10, 100, 1000]
       #pageSize: 100
+      enablePinning: true
       showFilter: true
       enableColumnResize: true
       enableHighlighting: true
+      plugins: [new window.ngGridCsvExportPlugin!]
+      sortInfo: 
+        fields: <[ time ]>
+        directions: <[ asc ]>
       columnDefs: 
         * field: \deliver_datetime
           displayName: \發送時間
