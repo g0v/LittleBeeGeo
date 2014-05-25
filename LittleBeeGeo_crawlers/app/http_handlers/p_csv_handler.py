@@ -55,7 +55,7 @@ def _parse_csv(data):
     db_csv_keys = util.db_find('bee', {'csv_key': {'$in': csv_key_list}}, {"_id": False, "csv_key": True})
     db_csv_keys = [db_csv_key.get('csv_key', '') for db_csv_key in db_csv_keys]
     db_csv_keys = [each_key for each_key in db_csv_keys if each_key]
-    is_csv_key_not_in_db = df['csv_key'].isin(db_csv_keys) == False
+    #is_csv_key_not_in_db = df['csv_key'].isin(db_csv_keys) == False
 
     df = df[is_csv_key_not_in_db]
 
