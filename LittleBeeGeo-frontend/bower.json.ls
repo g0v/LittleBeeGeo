@@ -20,6 +20,7 @@ dependencies:
   'select2': '~3.4.6'
   'angular-ui-utils': '~0.1.1'
   'ng-file-upload': '~1.3.2'
+  'ng-grid': '~2.0.11'
 devDependencies: 
   'angular-mocks': '~1.2.0-rc.2'
   'angular-scenario': '~1.2.0-rc.2'
