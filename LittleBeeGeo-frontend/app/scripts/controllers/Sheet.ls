@@ -31,7 +31,7 @@ angular.module 'LittleBeeGeoFrontend'
       showFilter: true
       enableColumnResize: true
       enableHighlighting: true
-      plugins: [new window.ngGridCsvExportPlugin!]
+      #plugins: [new window.ngGridCsvExportPlugin!]
       sortInfo: 
         fields: <[ time ]>
         directions: <[ asc ]>

@@ -85,6 +85,7 @@ def _parse_csv(data):
         csv_key = each_result.get('csv_key', '')
         versions = each_result.get('versions', [])
         version_text = each_result.get('version_text', [])
+        cfg.logger.debug('to db_update: each_result: %s', each_result)
         util.db_update('bee_csv', {'csv_key': csv_key}, each_result)
         for each_version in versions:
             util.db_update('bee_csv_versions', {'version': each_version}, {csv_key: version_text})
