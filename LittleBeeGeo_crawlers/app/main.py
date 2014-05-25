@@ -22,6 +22,7 @@ from app.http_handlers.post_google_geo_handler import post_google_geo_handler
 from app.http_handlers.get_versions_handler import get_versions_handler
 
 from app.http_handlers.post_ad_version_handler import post_ad_version_handler
+from app.http_handlers.post_all_ad_versions_handler import post_all_ad_versions_handler
 
 app = Bottle()
 
@@ -63,6 +64,12 @@ def p_ad_version():
     _log_entry()
     params = _process_json_params()
     return _process_result(post_ad_version_handler(params))
+
+
+@app.post('/post/all_ad_versions')
+def p_ad_version():
+    _log_entry()
+    return _process_result(post_all_ad_versions_handler())
 
 
 @app.get('/get/versions')
