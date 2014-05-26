@@ -3,7 +3,7 @@
 {map, values, join} = require 'prelude-ls'
 
 angular.module 'LittleBeeGeoFrontend'
-  .controller 'SheetCtrl',  <[ $scope jsonData ]> ++ ($scope, jsonData) ->
+  .controller 'SheetCtrl',  <[ $scope jsonData $filter ]> ++ ($scope, jsonData, $filter) ->
     $scope.$watch (-> jsonData.getDataTimestamp!), ->
       the_data = jsonData.getData!
 
@@ -15,7 +15,7 @@ angular.module 'LittleBeeGeoFrontend'
 
     _parse_data = (the_data) ->
       the_datetime = new Date the_data['deliver_time'] * 1000
-      the_data['deliver_datetime'] = the_datetime.toLocaleString!
+      the_data['deliver_datetime'] = $filter('date')(the_datetime, 'MM/dd/yyyy HH:mm:ss')
       if the_data.ad_versions is void
         the_data.ad_versions = []
       the_data['ad_version_text'] = join ',', the_data.ad_versions
