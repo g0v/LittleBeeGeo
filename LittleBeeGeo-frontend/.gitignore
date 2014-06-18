@@ -1,5 +1,6 @@
 **/.DS_Store
 
+/config.js
 /app/assets/*html
 /app/assets/partials/app/*.html
 /_public
