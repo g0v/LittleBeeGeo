@@ -25,7 +25,7 @@ LittleBeeGeo-frontend
 LittleBeeGeo_backend
 ---------
 小蜜蜂回報的 backend.
-使用 [python](https://www.python.org/) + [Bottle](https://www.python.org/)
+使用 [python](https://www.python.org/) + [Bottle](http://www.bottlepy.org)
 
 LittleBeeGeo_crawlers
 ---------
